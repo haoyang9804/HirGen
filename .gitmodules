@@ -1,0 +1,6 @@
+[submodule "otherTechs/Testing-DNN-Compilers"]
+	path = otherTechs/Testing-DNN-Compilers
+	url = git@github.com:haoyang9804/Testing-DNN-Compilers.git
+[submodule "otherTechs/TVMfuzz-exp"]
+	path = otherTechs/TVMfuzz-exp
+	url = git@github.com:haoyang9804/TVMfuzz-exp.git
