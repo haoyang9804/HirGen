@@ -1,0 +1,25 @@
+AlterOpLayout: Alternate the layouts of operators
+AnnotateSpans: Annotate a program with span information
+CanonicalizeCast: Canonicalize cast expressions to improve the efficiency of operator fusion
+CanonicalizeOps: Transfer some special operators into basic operators
+DeadCodeElimination: Remove dead code in computational graph
+DynamicToStatic: Convert dynamic operators into static counterpart
+FastMath: Converts the expensive functions to their faster but approximate counterparts
+FirstOrderGradient: Transforms all global functions in order to return the original result and the gradients of the inputs
+EliminateCommonSubexpr: Eliminate commonly used subexpressions
+MergeCompilerRegions: Merge compiler regions together
+Inline: Conduct inlining operations on the given Relay IR
+LambdaLift: Lift local closure to global function node
+LazyGradientInit: Help reduce memory cost of gradient tensors
+ManifestLifetimes: Manifest the lifetimes of variables
+PartialEvaluate: Evaluate the static fragment of the IR
+Legalize: Legalize a selected expression with another expression
+FoldConstant: Fold constant expressions in Relay IR
+ToANormalForm: Turn Graph Normal Form expressions into A Normal Form expressions
+ToGraphNormalForm: Modify the form of Relay IR from A Normal Form into Graph Normal Form
+SimplifyInference: Simplify Relay IR for inference phase
+ToBasicBlockNormalForm: Turn a Relay expression into Basic Block Normal Form
+FuseOps: Fuse operators in an Relay expression to a larger operator according to some rules
+DefuseOps: Inversion of FuseOps
+SimplifyExpr: Simplify Relay expressions
+InferType: Infer the type of an Relay expression and annotate with type information

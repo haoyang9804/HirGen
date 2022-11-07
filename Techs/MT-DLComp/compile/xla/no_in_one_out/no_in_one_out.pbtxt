@@ -1,0 +1,5 @@
+fetch {
+  id {
+    node_name: "PartitionedCall"
+  }
+}

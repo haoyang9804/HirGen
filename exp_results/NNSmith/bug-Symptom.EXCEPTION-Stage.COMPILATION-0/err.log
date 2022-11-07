@@ -1,0 +1,92 @@
+Traceback (most recent call last):
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 73, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_make_backend
+    return self.make_backend(model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 77, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 591, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 449, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 189, in build
+    self._build(mod, target, target_host, executor, runtime, mod_name)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  47: TVMFuncCall
+  46: _ZNSt17_Function_handlerIFvN3tvm7runtime7TVM
+  45: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  44: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  43: tvm::relay::backend::ExecutorCodegen::Codegen(tvm::IRModule, tvm::relay::Function const&, tvm::runtime::String)
+  42: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::relay::backend::GraphExecutorCodegenModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#2}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  41: tvm::relay::backend::GraphExecutorCodegen::Codegen(tvm::IRModule, tvm::relay::Function, tvm::runtime::String)
+  40: tvm::transform::Pass::operator()(tvm::IRModule) const
+  39: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  38: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  37: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  36: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  35: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::tec::LowerTEPass(tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::tec::LowerTEPass(tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  34: tvm::relay::tec::LowerTE(tvm::IRModule const&, tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)
+  33: tvm::transform::Pass::operator()(tvm::IRModule) const
+  32: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  31: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  30: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::tec::LowerTensorExpr(tvm::runtime::String const&, tvm::relay::tec::TECompiler, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::tec::LowerTensorExpr(tvm::runtime::String const&, tvm::relay::tec::TECompiler, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  29: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  28: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  27: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  26: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  25: tvm::relay::tec::LowerTensorExprMutator::DeviceAwareVisitExpr_(tvm::relay::FunctionNode const*)
+  24: _ZN3tvm5relay9transform22Devic
+  23: tvm::relay::ExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  22: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  21: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  20: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  19: tvm::relay::ExprMutator::VisitExpr_(tvm::relay::TupleNode const*)
+  18: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  17: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  16: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  15: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::CallNode const*)
+  14: tvm::relay::tec::LowerTensorExprMutator::DeviceAwareVisitExpr_(tvm::relay::CallNode const*)
+  13: tvm::relay::tec::LowerTensorExprMutator::MakeLoweredCall(tvm::relay::Function, tvm::runtime::Array<tvm::RelayExpr, void>, tvm::Span, tvm::Target)
+  12: tvm::relay::tec::TECompilerImpl::Lower(tvm::relay::tec::CCacheKey const&, tvm::runtime::String)
+  11: tvm::relay::tec::TECompilerImpl::LowerInternal(tvm::relay::tec::CCacheKey const&, std::function<tvm::runtime::String (tvm::runtime::String)>)
+  10: tvm::relay::tec::PrimFuncFor(tvm::relay::Function const&, tvm::Target const&, std::function<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > (std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>)
+  9: tvm::relay::tec::ScheduleBuilder::Create(tvm::relay::Function const&, std::function<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > (std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>)
+  8: tvm::relay::backend::MemoizedExprTranslator<tvm::runtime::Array<tvm::te::Tensor, void> >::VisitExpr(tvm::RelayExpr const&)
+  7: tvm::relay::ExprFunctor<tvm::runtime::Array<tvm::te::Tensor, void> (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  6: _ZZN3tvm5relay11ExprFunctorIFNS_7runtime
+  5: tvm::relay::tec::ScheduleBuilder::VisitExpr_(tvm::relay::CallNode const*)
+  4: tvm::relay::backend::MemoizedExprTranslator<tvm::runtime::Array<tvm::te::Tensor, void> >::VisitExpr(tvm::RelayExpr const&)
+  3: tvm::relay::ExprFunctor<tvm::runtime::Array<tvm::te::Tensor, void> (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  2: _ZZN3tvm5relay11ExprFunctorIFNS_7runtime
+  1: tvm::relay::tec::ScheduleBuilder::VisitExpr_(tvm::relay::CallNode const*)
+  0: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), TVMFuncCreateFromCFunc::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#2}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 81, in cfun
+    rv = local_pyfunc(*pyargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/backend/te_compiler.py", line 311, in lower_call
+    best_impl, outputs = select_implementation(op, call.attrs, inputs, ret_type, target)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/backend/te_compiler.py", line 201, in select_implementation
+    outs = impl.compute(attrs, inputs, out_type)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/op/op.py", line 126, in compute
+    return _OpImplementationCompute(self, attrs, inputs, out_type)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+  6: TVMFuncCall
+  5: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::relay::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#4}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  4: tvm::relay::OpImplementation::Compute(tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&)
+  3: _ZNSt17_Function_handlerIFvN3tvm7
+  2: tvm::runtime::TypedPackedFunc<tvm::runtime::Array<tvm::te::Tensor, void> (tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&)>::AssignTypedLambda<tvm::runtime::Array<tvm::te::Tensor, void> (*)(tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&)>(tvm::runtime::Array<tvm::te::Tensor, void> (*)(tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&))::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  1: tvm::relay::BroadCastToCompute(tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&)
+  0: tvm::topi::broadcast_to(tvm::te::Tensor const&, tvm::runtime::Array<tvm::PrimExpr, void> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  File "../include/tvm/topi/broadcast.h", line 62
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+  Check failed: (topi::detail::EqualCheck(output_shape[i], bh.common_shape[i])) is false: 

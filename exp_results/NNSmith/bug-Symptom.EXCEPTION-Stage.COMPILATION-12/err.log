@@ -1,0 +1,94 @@
+Traceback (most recent call last):
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 73, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_make_backend
+    return self.make_backend(model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 77, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 591, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 449, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/build_module.py", line 189, in build
+    self._build(mod, target, target_host, executor, runtime, mod_name)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+TypeError: Traceback (most recent call last):
+  34: TVMFuncCall
+  33: _ZNSt17_Function_handlerIFvN3tvm7runtime7TVM
+  32: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  31: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  30: tvm::relay::backend::RelayBuildModule::OptimizeImpl(tvm::IRModule)
+  29: tvm::transform::Pass::operator()(tvm::IRModule) const
+  28: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  27: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  26: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  25: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  24: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::AlterOpLayout()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::transform::AlterOpLayout()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  23: tvm::relay::alter_op_layout::AlterOpLayout(tvm::RelayExpr const&)
+  22: tvm::relay::ForwardRewrite(tvm::RelayExpr const&, tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)> const&, std::function<tvm::runtime::ObjectRef (tvm::relay::Call const&)>, std::function<tvm::RelayExpr (tvm::RelayExpr const&)>)
+  21: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  20: void tvm::relay::ExpandDataflow<tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}) [clone .isra.535]
+  19: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  18: _ZN3tvm5relay16MixedModeMutato
+  17: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  16: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  15: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  14: tvm::relay::ExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  13: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  12: void tvm::relay::ExpandDataflow<tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}) [clone .isra.535]
+  11: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  10: _ZN3tvm5relay16MixedModeMutato
+  9: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  8: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  7: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  6: tvm::relay::MixedModeMutator::VisitExpr_(tvm::relay::CallNode const*)
+  5: tvm::relay::ForwardRewriter::Rewrite_(tvm::relay::CallNode const*, tvm::RelayExpr const&)
+  4: _ZNSt17_Function_handlerIFvN3tvm7
+  3: tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)>::AssignTypedLambda<tvm::RelayExpr (*)(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)>(tvm::RelayExpr (*)(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&))::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  2: tvm::RelayExpr tvm::relay::LayoutRewriter<tvm::relay::alter_op_layout::AlterTransformMemorizer>(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)
+  1: tvm::relay::alter_op_layout::AlterTransformMemorizerNode::CallWithNewLayouts(tvm::relay::Call const&, tvm::Attrs, std::vector<tvm::RelayExpr, std::allocator<tvm::RelayExpr> > const&)
+  0: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), TVMFuncCreateFromCFunc::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#2}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 81, in cfun
+    rv = local_pyfunc(*pyargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/op/nn/_nn.py", line 231, in alter_op_layout_conv2d
+    return topi.nn.conv2d_alter_layout(attrs, inputs, tinfos, out_type)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/data/hmaaj/tvm-exp/python/tvm/target/generic_func.py", line 275, in dispatch_func
+    return dispatch_dict[k](*args, **kwargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/topi/x86/conv2d_alter_op.py", line 60, in _alter_conv2d_layout
+    impl, outs = relay.backend.te_compiler.select_implementation(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/backend/te_compiler.py", line 201, in select_implementation
+    outs = impl.compute(attrs, inputs, out_type)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/op/op.py", line 126, in compute
+    return _OpImplementationCompute(self, attrs, inputs, out_type)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+  3: TVMFuncCall
+  2: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::relay::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#4}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  1: tvm::relay::OpImplementation::Compute(tvm::Attrs const&, tvm::runtime::Array<tvm::te::Tensor, void> const&, tvm::Type const&)
+  0: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), TVMFuncCreateFromCFunc::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#2}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 81, in cfun
+    rv = local_pyfunc(*pyargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/op/strategy/generic.py", line 243, in _compute_conv2d
+    return [topi_compute(*args)]
+  File "/data/hmaaj/tvm-exp/python/tvm/topi/x86/conv2d.py", line 129, in conv2d_nchw
+    packed_out = conv2d_NCHWc(data, kernel, strides, padding, dilation, layout, layout, out_dtype)
+  File "/data/hmaaj/tvm-exp/python/tvm/autotvm/task/topi_integration.py", line 165, in wrapper
+    node = topi_compute(cfg, *args)
+  File "/data/hmaaj/tvm-exp/python/tvm/topi/x86/conv2d.py", line 196, in conv2d_NCHWc
+    cfg.define_split(
+  File "/data/hmaaj/tvm-exp/python/tvm/autotvm/task/space.py", line 730, in define_split
+    return self._add_new_transform(SplitSpace, name, axes, policy, **kwargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/autotvm/task/space.py", line 835, in _add_new_transform
+    space = space_class(axes, policy, **kwargs)
+  File "/data/hmaaj/tvm-exp/python/tvm/autotvm/task/space.py", line 216, in __init__
+    divisibles = get_factors(self.product)
+  File "/data/hmaaj/tvm-exp/python/tvm/autotvm/task/space.py", line 167, in get_factors
+    functools.reduce(
+TypeError: reduce() of empty sequence with no initial value

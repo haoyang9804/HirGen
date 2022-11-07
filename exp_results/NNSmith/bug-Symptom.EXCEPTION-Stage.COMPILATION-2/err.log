@@ -1,0 +1,48 @@
+Traceback (most recent call last):
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 73, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_make_backend
+    return self.make_backend(model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 71, in make_backend
+    mod, params = relay.frontend.from_onnx(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 5171, in from_onnx
+    mod, params = g.from_onnx(graph, opset)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 4942, in from_onnx
+    op = fold_constant(op)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/common.py", line 511, in fold_constant
+    return _transform.FoldConstantExpr(node, mod)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/transform/transform.py", line 259, in FoldConstantExpr
+    return _ffi_api.FoldConstantExpr(expr, mod)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm.error.DiagnosticError: Traceback (most recent call last):
+  25: TVMFuncCall
+  24: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::RelayExpr const&, tvm::IRModule const&)>::AssignTypedLambda<tvm::RelayExpr (*)(tvm::RelayExpr const&, tvm::IRModule const&)>(tvm::RelayExpr (*)(tvm::RelayExpr const&, tvm::IRModule const&), std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  23: tvm::relay::transform::FoldConstantExpr(tvm::RelayExpr const&, tvm::IRModule const&)
+  22: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  21: void tvm::relay::ExpandDataflow<tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#2}, tvm::relay::ExpandDataflow, tvm::relay::ExpandDataflow<{lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1}>(tvm::RelayExpr, {lambda(tvm::RelayExpr const&)#1}, tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)::{lambda(tvm::RelayExpr const&)#1})::{lambda(tvm::RelayExpr const&)#1}) [clone .isra.535]
+  20: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  19: _ZN3tvm5relay16MixedModeMutato
+  18: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  17: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  16: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayEx
+  15: tvm::relay::MixedModeMutator::VisitExpr_(tvm::relay::CallNode const*)
+  14: tvm::relay::transform::(anonymous namespace)::ConstantFolder::Rewrite_(tvm::relay::CallNode const*, tvm::RelayExpr const&)
+  13: tvm::relay::transform::(anonymous namespace)::ConstantFolder::ConstEvaluate(tvm::RelayExpr const&)
+  12: tvm::relay::Eval(tvm::RelayExpr, tvm::runtime::Map<tvm::GlobalTypeVar, tvm::TypeData, void, void>, std::unordered_set<tvm::runtime::String, std::hash<tvm::runtime::String>, std::equal_to<tvm::runtime::String>, std::allocator<tvm::runtime::String> >, DLDevice, tvm::Target)
+  11: tvm::relay::Prepare(tvm::IRModule, tvm::CompilationConfig)
+  10: tvm::transform::Pass::operator()(tvm::IRModule) const
+  9: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  8: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  7: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  6: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  5: tvm::transform::Pass::operator()(tvm::IRModule) const
+  4: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  3: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  2: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}>(tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  1: tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}::operator()(tvm::IRModule, tvm::transform::PassContext const&) const [clone .isra.813]
+  0: tvm::DiagnosticContext::Render()
+  File "../src/ir/diagnostic.cc", line 105
+DiagnosticError: one or more error diagnostics were emitted, please check diagnostic render for output.

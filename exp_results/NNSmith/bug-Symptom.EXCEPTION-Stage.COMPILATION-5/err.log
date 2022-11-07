@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 73, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_make_backend
+    return self.make_backend(model)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/data/hmaaj/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 71, in make_backend
+    mod, params = relay.frontend.from_onnx(
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 5171, in from_onnx
+    mod, params = g.from_onnx(graph, opset)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 4935, in from_onnx
+    op = self._convert_operator(op_name, inputs, attr, opset)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 5064, in _convert_operator
+    sym = convert_map[op_name](inputs, attrs, self._params)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 355, in _impl_v1
+    attr_cvt, data = cls._run_calculation(inputs, attr, params)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/onnx.py", line 363, in _run_calculation
+    input_shape = infer_shape(data)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/common.py", line 526, in infer_shape
+    out_type = infer_type(inputs, mod=mod)
+  File "/data/hmaaj/tvm-exp/python/tvm/relay/frontend/common.py", line 501, in infer_type
+    new_mod = _transform.InferType()(new_mod)
+  File "/data/hmaaj/tvm-exp/python/tvm/ir/transform.py", line 161, in __call__
+    return _ffi_transform_api.RunPass(self, mod)
+  File "/data/hmaaj/tvm-exp/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  8: TVMFuncCall
+  7: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::transform::Pass, tvm::IRModule)>::AssignTypedLambda<tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}>(tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  6: tvm::transform::Pass::operator()(tvm::IRModule) const
+  5: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  4: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  3: std::_Function_handler<void (tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*), tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}>(tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}>::_M_invoke(std::_Any_data const&, tvm::runtime::TVMArgs&&, tvm::runtime::TVMRetValue*&&)
+  2: tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}::operator()(tvm::IRModule, tvm::transform::PassContext const&) const [clone .isra.813]
+  1: tvm::relay::TypeInferencer::Infer(tvm::GlobalVar, tvm::relay::Function)
+  0: tvm::relay::TypeSolver::Solve() [clone .cold.533]
+  File "../src/relay/analysis/type_solver.cc", line 622
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+  Check failed: (false) is false: relay.concatenate requires all tensors have the same shape on non-concatenating axes

@@ -1,0 +1,24 @@
+feed {
+  id {
+    node_name: "serving_default_input"
+  }
+  shape {
+    dim {
+      size: 4
+    }
+    dim {
+      size: 3
+    }
+    dim {
+      size: 32
+    }
+    dim {
+      size: 32
+    }
+  }
+}
+fetch {
+  id {
+    node_name: "PartitionedCall"
+  }
+}

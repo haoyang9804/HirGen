@@ -1,0 +1,612 @@
+----------1.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------10.py----------
+raise get_last_ffi_error()
+File "../src/target/source/codegen_c.cc", line 608
+----------100.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------101.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------102.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------103.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------104.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------105.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------106.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------107.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------108.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------109.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------11.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------110.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------111.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------112.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------113.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------114.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------115.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------116.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------117.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------118.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------119.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------12.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------120.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------121.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------122.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------123.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------124.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------125.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------126.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------127.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------128.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------129.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------13.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------130.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------131.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------132.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------133.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------134.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------135.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------136.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------137.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------138.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------139.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------14.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------140.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------141.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------142.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------143.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------144.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------145.py----------
+raise get_last_ffi_error()
+File "../src/target/source/codegen_c.cc", line 608
+----------146.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------147.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------148.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------149.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------15.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------150.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------151.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------152.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------153.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------154.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------155.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------156.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------157.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------158.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------159.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------16.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------160.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------161.py----------
+raise get_last_ffi_error()
+File "../src/target/source/codegen_c.cc", line 608
+----------162.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------163.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------164.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------165.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------166.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------167.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------168.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------169.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------17.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------170.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------18.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------19.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------2.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------20.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------21.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------22.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------23.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------24.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------25.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------26.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------27.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------28.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------29.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------3.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------30.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------31.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------32.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------33.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------34.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------35.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------36.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log10
+----------37.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------38.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------39.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------4.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------40.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------41.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------42.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------43.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------44.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------45.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------46.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------47.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------48.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------49.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------5.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------50.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------51.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------52.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------53.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------54.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------55.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------56.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------57.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------58.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log
+----------59.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------6.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------60.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------61.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------62.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------63.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------64.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------65.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------66.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------67.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------68.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------69.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------7.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------70.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------71.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------72.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------73.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------74.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------75.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------76.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------77.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------78.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------79.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------8.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------80.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------81.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.log2
+----------82.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------83.py----------
+raise get_last_ffi_error()
+File "../src/target/source/codegen_c.cc", line 608
+----------84.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------85.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------86.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------87.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------88.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------89.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------9.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------90.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------91.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------92.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------93.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sin
+----------94.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------95.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.sqrt
+----------96.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.cos
+----------97.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------98.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 975
+Check failed: (f) is false: Cannot find intrinsic declaration, possible type mismatch: llvm.exp
+----------99.py----------
+raise get_last_ffi_error()
+File "../src/target/llvm/codegen_llvm.cc", line 1095
+----------.pkl_memoize_py3----------
