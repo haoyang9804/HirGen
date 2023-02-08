@@ -2,6 +2,19 @@
 
 **HirGen** is an effective fuzzer for Deep Learning compilers. Specifically, it focuses on the high-level optimization stage.
 
+Now HirGen can support 58 operators, including
+
++ binary operators: Add, Subtract, Multiply, Divide, Power, Mod,
+Floor Mod, Floor Divide, Logical And, Logical Or, Logical
+Xor, Bitwise And, Bitwise Or, Equal, Not Equal, Less, LessEqual,
+Greater, GreaterEqual, Maximum, Minimum, Right Shift, Left
+Shift.
++ unary operators: Log, Log2, Log10, Tan, Tanh, Cos, Cosh, Sin,
+Sinh, Acos, Acosh, Asin, Asinh, Atan, Atanh, Exp, Erf, Sqrt,
+Rsqrt, Sigmoid, Floor, Ceil, Trunc, Round, Abs, Sign,
+Negative, Logical not, Bitwise not, Zeros Like, Ones Like,
+Copy, isNan, isFinite, isInf.
+
 Until now, **HirGen** has detected 21 bugs, of which 17 have been confirmed
 and 12 have been fixed. All these bugs lie in https://github.com/anonymousWork000/HirGen/tree/experiment
 
