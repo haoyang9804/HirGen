@@ -1,0 +1,149 @@
+1:
+  0: high-level (type)
+  1: high-level
+  2: high-level
+  3: high-level
+  5: high-level (type)
+  6: high-level
+  7: high-level
+  12: high-level
+  13: runtime
+  14: high-level
+  15: high-level
+
+  7 high-level 10 / 11 = 90.9%  
+
+2: 
+  0: high-level 
+  1: high-level
+  2: high-level
+  3: high-level
+  4: high-level
+  5: high-level
+  6: runtime
+  7: high-level
+  13: high-level
+  14: high-level
+
+  7 high-level
+  9 / 10 = 90%
+
+3: 
+  0: high-level
+  1: high-level
+  3: high-level
+  6: high-level
+  8: high-level
+  9: high-level
+  10: runtime
+  13: high-level
+  15: high-level
+  17: high-level
+  20: inconsistency
+  21: inconsistency
+
+  9 / 12 == 75 %
+
+4:
+  0: high-level
+  1: high-level
+  2: high-level
+  3: high-level
+  5: high-level
+  8: high-level
+  10: runtime
+  11: high-level
+  13: high-level
+  18: inconsistency
+
+  8 / 10 = 80%
+
+5: 
+  1: high-level
+  2: high-level
+  3: high-level
+  4: runtime
+  5: high-level
+  6: high-level
+  7: high-level
+  8: high-level
+  9: inconsistency
+  10: high-level
+  11: high-level
+
+  8 high-level
+  9 / 11 = 81.8%
+
+6:
+  0: runtime
+  1: high-level
+  2: high-level
+  3: high-level
+  4: high-level
+  5: high-level
+  9: high-level
+  10: high-level
+  12: high-level
+  18: inconsistency
+
+  6 high-level
+  8 / 10 = 80%
+
+7:
+  1: high-level
+  2: high-level
+  4: high-level
+  6: high-level
+  8: high-level
+  10: runtime
+  11: high-level
+  12: high-level
+  13: high-level
+  21: high-level
+  
+  9 high-level
+  9 / 10 = 90%
+
+8:
+  0: high-level
+  1: high-level
+  2: high-level
+  4: high-level
+  6: high-level
+  9: high-level
+  12: runtime
+  15: high-level
+  16: high-level
+  20: inconsistency
+
+  8 high-level
+  8 / 10 = 80%
+
+9: 
+  0: high-level
+  1: high-level
+  3: high-level
+  4: high-level
+  6: runtime
+  7: high-level
+  8: high-level
+  10: high-level
+  12: high-level
+  15: high-level
+
+  9 high-level
+  9 / 10 = 90%
+
+10:
+  0: high-level
+  2: high-level
+  3: high-level
+  4: high-level
+  5: high-level
+  6: high-level
+  7: high-level
+  10: runtime
+  12: high-level
+
+  8 high-level
+  8 / 9 = 88.9%
