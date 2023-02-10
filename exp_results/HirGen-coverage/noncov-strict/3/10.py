@@ -1,0 +1,555 @@
+import tvm
+from tvm import relay
+from tvm.ir.transform import Sequential
+from tvm.contrib import graph_runtime
+import numpy as np
+def vmobj_to_list(o, dtype="float32"):
+    if isinstance(o, tvm.nd.NDArray):
+        return [o]
+    elif isinstance(o, tvm.runtime.container.ADT):
+        result = []
+        for f in o:
+            result.extend(vmobj_to_list(f, dtype))
+        return result
+    else:
+        return o
+
+
+mod = tvm.IRModule()
+mutated_mod = tvm.IRModule()
+var_0 = relay.var("var_0", dtype = "float64", shape = ())#candidate|0|()|var|float64
+uop_1 = relay.log10(var_0.astype('float64')) # shape=()
+var_3 = relay.var("var_3", dtype = "float64", shape = (5,))#candidate|3|(5,)|var|float64
+bop_4 = relay.not_equal(uop_1.astype('bool'), var_3.astype('bool')) # shape=(5,)
+var_7 = relay.var("var_7", dtype = "float64", shape = ())#candidate|7|()|var|float64
+bop_8 = relay.maximum(uop_1.astype('int8'), var_7.astype('int8')) # shape=()
+const_11 = relay.const([[[8.061625,8.521738,9.716932,0.280979,-9.020242,3.140860,6.762776,-2.575113,-0.993282,7.847963,-0.701901,9.805474],[-1.112411,-0.850553,-3.466205,-0.723722,-2.329667,4.442126,9.374234,-7.375968,8.936796,0.682864,-3.289377,8.717888],[-4.904441,-1.723685,-1.694534,0.186261,-8.681916,4.605142,5.480277,-9.881830,5.108625,7.762317,-5.858511,1.162998],[4.351961,-6.410005,-9.990528,-1.719911,-6.442460,8.231824,-1.884832,2.510760,-1.609685,1.230552,-8.939451,-5.110947]],[[6.072700,-4.549173,6.441582,-9.812828,7.519291,-8.518124,-3.525023,-1.369593,-9.900841,0.900150,-5.780224,0.503631],[-3.088559,-0.761034,-9.812050,-0.249311,-5.063584,9.161964,-0.166780,-7.561701,-1.319482,-6.037233,7.814396,7.163823],[-8.357296,-7.148143,8.048272,-6.996127,-8.310483,-9.155593,1.725468,-2.601951,-0.373317,9.066864,1.215448,-6.367222],[2.508435,-8.714952,6.746322,-2.344141,2.450262,-0.743233,-0.003012,-3.233502,4.492709,9.354684,8.156400,-2.547610]],[[7.029601,8.262225,4.130468,-5.240909,-4.888503,8.887470,-2.905529,3.078249,-7.637468,-7.787097,-0.818786,7.303920],[6.693680,-6.395212,-8.573882,-4.252779,0.687832,2.407067,3.658244,4.979896,-7.746461,8.624208,-6.050879,-0.921173],[-6.348346,3.791914,2.792860,-0.412075,1.548466,-0.179387,8.248137,9.320947,-8.197177,2.836387,-8.075142,7.772729],[0.754370,1.407474,0.513426,-0.472129,-0.131370,6.617366,-8.954654,-9.540351,-5.082004,-2.538046,-3.319019,-9.003824]],[[-5.972956,-6.438840,-8.328790,8.398045,1.872135,1.972342,1.320231,-6.261194,0.730805,0.236810,-7.925995,5.298686],[-4.630901,-3.570112,8.236263,2.060250,3.173021,-3.369039,3.074708,9.318439,-9.093425,-4.710574,1.839926,7.607056],[-5.530811,-3.822910,6.064381,5.502337,2.085917,-2.213145,9.926882,-3.034818,0.122395,-7.435639,6.094039,8.434563],[3.658828,5.381176,2.523090,0.479648,7.736919,-4.486033,-5.485485,6.930830,4.408123,-2.591955,3.328709,1.822670]],[[-4.629708,-7.701100,-5.091781,0.768735,4.995537,-3.658197,-5.844108,-9.204444,6.083652,-6.273058,-7.883274,-8.673116],[9.148636,-5.989647,6.773820,9.722553,-7.656826,9.152205,-8.312002,-3.844762,6.250637,-1.018127,-1.990492,-4.132824],[1.517174,3.399572,-1.581329,9.681176,1.260013,-0.930898,-0.214323,-4.822424,5.323980,1.955512,-8.911180,7.438614],[-4.562295,3.404006,-6.681114,-0.785775,-2.751661,-5.929284,7.444818,-2.159895,5.359953,-0.703291,5.110418,-2.824337]],[[-0.653399,-0.112242,7.162946,6.398911,1.236836,8.409427,-2.699717,0.408090,9.021534,2.328211,7.956797,9.703500],[-1.952373,-9.384428,-0.385671,2.231930,-4.193096,-6.296328,6.895813,1.542201,-1.520430,9.317574,2.459864,-6.423498],[-3.666495,0.933560,1.049841,-3.739988,-2.602369,4.478566,-9.200367,-6.654994,-8.524353,-6.951102,-3.227858,-7.576610],[-1.326206,9.195669,-5.213404,4.876776,8.919287,6.501503,0.909557,-2.742434,-8.882287,3.144791,-5.434920,-1.238775]],[[-0.462247,0.860683,-2.973258,8.376700,0.259780,-0.880788,-3.785279,-8.711293,8.569029,0.530907,1.631004,-0.859646],[5.034226,-0.937972,5.305962,2.796646,-5.666675,-4.022291,-4.989817,5.306144,-1.239906,-6.813582,3.204762,-0.046807],[-5.903952,-4.366995,-4.721030,3.357123,-3.706128,1.282260,-2.735406,0.504914,9.333166,-6.962049,0.973047,8.046588],[5.204977,0.042836,-8.731045,8.893634,9.617608,6.064022,6.022398,7.851681,-2.672900,5.892056,8.493741,9.460028]],[[9.836193,2.633520,-1.609476,-7.426758,-3.835431,-4.439099,-9.068715,6.186482,6.878610,4.115463,5.335976,-1.320080],[8.464681,1.501382,-6.831950,-6.749375,-2.835603,3.104109,-7.212466,-6.768306,9.757541,-9.168825,6.510406,0.162085],[-7.918413,8.869071,3.355780,1.648254,2.165319,-1.916712,-6.641632,8.854233,-0.306680,7.375531,0.158690,1.711456],[-2.009958,-5.624597,4.513952,0.166734,-4.484188,3.192688,-5.745895,-5.682477,7.787568,-3.184420,7.011196,-6.153175]],[[-8.407660,7.813873,-1.733303,-2.810753,-0.787454,-8.123679,-5.631770,6.058455,-8.509556,-3.739239,5.947092,-7.516901],[3.401172,-2.607308,2.806957,-9.889053,-2.229507,0.420774,-4.398245,-2.977602,-1.113932,-2.044976,-8.599669,8.163808],[0.497873,1.434904,-6.211199,9.763082,-7.028922,5.882228,8.402051,9.078180,8.310835,-3.783165,-6.763016,-7.576562],[6.031126,2.686702,-3.368973,-6.527292,6.140357,-8.895700,5.714770,0.230965,-7.923954,6.291445,6.979062,5.643999]],[[4.908207,-2.362996,-2.749355,-5.212712,-0.901835,0.278685,-4.932724,-4.540955,-6.715262,-9.175774,-4.659007,1.539782],[-7.927900,-2.886819,-8.895857,-0.658230,5.201723,8.750260,3.287629,0.827643,-1.438539,-5.086456,-8.663729,-4.122678],[2.251102,1.050980,-2.470428,-5.882381,2.324196,-8.566985,2.133711,-7.874597,-1.950572,-7.290183,8.532974,7.653049],[1.171737,9.441607,-2.441308,-8.602360,-4.497969,2.174906,-6.342071,9.770203,2.975857,7.499461,-3.779227,4.125652]],[[-8.196772,-7.707679,-7.604758,1.764645,7.269676,1.690323,-7.898323,7.911613,6.410993,4.334398,1.062942,-8.376834],[7.791054,1.024057,1.028126,-0.388334,-4.471061,3.496925,-0.210096,-0.356892,5.194695,9.848943,0.453374,-3.755984],[0.490830,0.714441,-2.064062,0.214150,4.289471,4.975035,-3.722461,-4.636318,-8.511532,8.771199,-5.451847,-4.700789],[8.107381,1.430203,3.431358,-3.471857,-9.159962,4.273611,7.589921,-0.611727,6.614699,7.545070,6.020202,-7.476454]],[[8.395276,-4.071281,-7.792714,-4.544260,-6.872791,-6.942113,1.336785,-4.146056,-2.034652,4.087738,8.662618,8.599146],[9.015309,-1.860491,-3.091997,1.778326,-2.763118,-4.020932,-4.098862,-2.573023,-1.232900,-4.647706,9.824422,7.383218],[-5.646052,8.034796,-3.113302,-3.288230,6.022020,-8.343054,-3.253397,-3.437664,7.956199,9.582803,3.744642,-5.546281],[-0.201880,1.002957,-2.591000,-5.343812,3.759262,-0.380208,-3.828801,-0.963445,7.869600,8.484822,-8.857336,-3.130601]],[[-8.211043,0.684057,1.023370,-3.063513,1.802818,-4.844135,-5.514510,-1.405533,-4.842561,-5.852034,-1.037632,6.598555],[1.629239,1.391826,-6.170130,-3.876471,2.419816,-7.175475,1.945572,-7.353593,-5.066337,-0.693728,5.274512,3.666833],[4.024826,-1.874464,-3.892519,2.141901,9.668975,3.281302,-6.783951,-2.608472,8.469409,8.698708,6.172327,6.640838],[-2.449364,4.726308,0.224208,4.238996,-3.201807,-3.609422,2.779507,-1.478800,-1.997101,-9.221063,5.155799,-4.624750]],[[0.676481,-3.735101,1.827019,6.598534,8.971754,-7.672746,5.362499,-8.655586,6.159135,-5.157562,-5.969092,4.444332],[-8.243574,-3.063239,0.645694,-0.600357,-0.204031,0.962558,5.225225,1.959016,8.976992,4.267726,0.172596,-7.902394],[-7.053824,-0.337575,-7.617869,8.817477,4.010613,-0.726805,-9.537303,-0.430781,9.326127,-0.304994,-2.403395,-1.860268],[7.378565,-0.768849,3.278569,-7.197678,3.068939,-9.649976,-5.088978,-3.313834,6.156613,-8.594829,9.647258,-6.701404]],[[6.908270,1.991036,-5.857893,1.017424,5.264740,4.808067,7.905692,-0.472406,-4.761345,-9.224274,-4.791508,-0.099954],[0.231515,7.932083,4.085086,-2.254371,0.934919,-3.352646,2.818101,7.481122,3.240668,6.595319,-3.304659,0.994175],[-0.954437,-1.072404,-8.362029,8.803961,3.852014,5.612384,-6.634104,3.356021,5.617101,-4.253641,-9.938940,-0.027354],[-5.948486,-8.823602,8.500520,1.976543,8.314780,5.626379,-0.373703,4.525588,1.296863,0.213083,-6.434956,5.418886]],[[-6.618274,-1.268936,-6.365750,0.025982,-7.144258,7.951286,3.222718,-5.651404,-4.208731,2.019500,-1.899772,9.744607],[7.660700,8.934377,8.635646,6.156458,-3.396339,-6.916019,-7.865595,0.191318,6.156406,3.587099,9.490391,3.225392],[4.939104,7.782174,-7.594604,8.674428,9.796557,5.937083,-0.945615,-1.613609,3.161696,8.022379,-2.011398,-6.636105],[4.154271,3.356432,0.564532,6.450993,8.485451,-0.775980,3.596490,2.602918,3.642613,8.796868,9.332806,-4.597169]]], dtype = "float64")#candidate|11|(16, 4, 12)|const|float64
+bop_12 = relay.logical_and(uop_1.astype('bool'), const_11.astype('bool')) # shape=(16, 4, 12)
+bop_15 = relay.floor_divide(bop_8.astype('float64'), var_0.astype('float64')) # shape=()
+uop_18 = relay.asinh(var_7.astype('float64')) # shape=()
+bop_20 = relay.logical_and(const_11.astype('bool'), uop_1.astype('bool')) # shape=(16, 4, 12)
+uop_23 = relay.acos(uop_18.astype('float64')) # shape=()
+uop_25 = relay.asinh(uop_1.astype('float64')) # shape=()
+var_27 = relay.var("var_27", dtype = "float64", shape = ())#candidate|27|()|var|float64
+bop_28 = relay.logical_or(uop_23.astype('bool'), var_27.astype('bool')) # shape=()
+uop_31 = relay.exp(bop_12.astype('float64')) # shape=(16, 4, 12)
+uop_33 = relay.exp(bop_15.astype('float64')) # shape=()
+var_35 = relay.var("var_35", dtype = "float64", shape = (8, 4, 7))#candidate|35|(8, 4, 7)|var|float64
+bop_36 = relay.maximum(bop_15.astype('int8'), var_35.astype('int8')) # shape=(8, 4, 7)
+uop_39 = relay.acosh(uop_25.astype('float32')) # shape=()
+bop_41 = relay.left_shift(uop_39.astype('uint32'), uop_1.astype('uint32')) # shape=()
+bop_44 = relay.power(bop_28.astype('float64'), uop_33.astype('float64')) # shape=()
+bop_47 = relay.greater(bop_41.astype('bool'), uop_23.astype('bool')) # shape=()
+const_50 = relay.const([2.564499,-1.885544,-4.255870,0.078584,-7.930093,-1.956282], dtype = "float64")#candidate|50|(6,)|const|float64
+bop_51 = relay.equal(uop_25.astype('bool'), const_50.astype('bool')) # shape=(6,)
+uop_54 = relay.log10(bop_41.astype('float64')) # shape=()
+var_56 = relay.var("var_56", dtype = "float64", shape = (5,))#candidate|56|(5,)|var|float64
+bop_57 = relay.add(var_3.astype('uint32'), relay.reshape(var_56.astype('uint32'), relay.shape_of(var_3))) # shape=(5,)
+const_60 = relay.const([[[-1.648674,0.110962,9.178150,-3.575206,9.500957,-3.662108],[-0.769479,0.819497,6.195932,9.050126,2.909649,1.854723],[8.978085,-8.070239,-0.896655,3.022558,-2.813321,-0.471889]],[[7.988073,-1.204928,0.457750,9.416428,1.574796,3.106132],[9.775629,3.237380,6.097534,-1.760430,-7.055980,-2.130892],[7.769391,6.993948,-1.481230,0.987659,6.383029,-5.170507]],[[-7.719738,-8.251329,2.067204,1.171713,-4.745357,6.968621],[6.385999,-4.327718,-3.735376,8.992697,-3.410957,-5.407218],[-6.754026,-8.956919,9.378500,1.875044,4.087843,6.820907]],[[1.006441,6.664240,0.423828,0.758482,-9.608632,-3.701610],[-6.933837,-5.693809,4.830204,6.056181,-5.464652,5.676262],[7.579973,-5.845568,-2.686264,1.890842,-7.541560,4.197193]],[[5.046113,-8.407306,-8.261400,-6.470258,-6.017183,-7.703949],[4.411061,-2.262619,4.888564,6.109915,-4.250217,9.856963],[2.179294,-8.731522,6.984203,-4.148678,3.949437,0.382232]],[[6.627288,-8.786934,-1.256518,8.579508,8.972813,-6.679338],[6.996633,3.513272,6.613008,-6.280128,1.896151,-6.271773],[-0.294575,3.222300,0.310148,-8.553797,-1.695827,7.767666]],[[1.895894,9.169383,-2.490827,9.886905,7.414980,2.930169],[-7.597074,-0.408355,-5.228253,-4.629302,3.222783,-5.408294],[-9.027781,0.281836,-8.436870,-6.035221,-6.606245,-8.390700]],[[7.505635,-1.848547,-7.393333,8.797913,-7.511531,-8.043759],[-5.991674,4.271018,-9.353377,-0.216346,-0.852727,3.927317],[-4.079181,-9.360736,0.387975,6.812226,2.902062,-6.635767]],[[1.009203,-2.676122,1.495836,1.507705,2.327150,3.840308],[-5.704704,5.904947,8.059062,9.709675,-7.329308,-0.940302],[-1.594294,-1.097582,-2.610791,8.849225,-4.131321,9.916250]],[[-1.750769,9.484131,8.278923,8.839768,-2.046448,6.864033],[-6.073745,-8.914792,-4.762442,-2.249937,-1.307967,-6.747461],[3.730602,6.460981,0.695015,8.247090,1.977381,-1.995570]]], dtype = "float64")#candidate|60|(10, 3, 6)|const|float64
+bop_61 = relay.less_equal(uop_54.astype('bool'), const_60.astype('bool')) # shape=(10, 3, 6)
+var_64 = relay.var("var_64", dtype = "float64", shape = ())#candidate|64|()|var|float64
+bop_65 = relay.less(uop_54.astype('bool'), var_64.astype('bool')) # shape=()
+uop_68 = relay.sinh(bop_65.astype('float32')) # shape=()
+output = relay.Tuple([bop_4,bop_20,uop_31,bop_36,bop_44,bop_47,bop_51,bop_57,bop_61,uop_68,])
+output2 = relay.Tuple([bop_4,bop_20,uop_31,bop_36,bop_44,bop_47,bop_51,bop_57,bop_61,uop_68,])
+func_70 = relay.Function([var_0,var_3,var_7,var_27,var_35,var_56,var_64,], output)
+mod['func_70'] = func_70
+mod = relay.transform.InferType()(mod)
+var_71 = relay.var("var_71", dtype = "float64", shape = ())#candidate|71|()|var|float64
+var_72 = relay.var("var_72", dtype = "float64", shape = (5,))#candidate|72|(5,)|var|float64
+var_73 = relay.var("var_73", dtype = "float64", shape = ())#candidate|73|()|var|float64
+var_74 = relay.var("var_74", dtype = "float64", shape = ())#candidate|74|()|var|float64
+var_75 = relay.var("var_75", dtype = "float64", shape = (8, 4, 7))#candidate|75|(8, 4, 7)|var|float64
+var_76 = relay.var("var_76", dtype = "float64", shape = (5,))#candidate|76|(5,)|var|float64
+var_77 = relay.var("var_77", dtype = "float64", shape = ())#candidate|77|()|var|float64
+output = func_70(var_71,var_72,var_73,var_74,var_75,var_76,var_77,)
+func_78 = relay.Function([var_71,var_72,var_73,var_74,var_75,var_76,var_77,], output)
+mutated_mod['func_78'] = func_78
+mutated_mod = relay.transform.InferType()(mutated_mod)
+var_80 = relay.var("var_80", dtype = "int8", shape = (4, 11))#candidate|80|(4, 11)|var|int8
+var_81 = relay.var("var_81", dtype = "int8", shape = (4, 11))#candidate|81|(4, 11)|var|int8
+bop_82 = relay.bitwise_xor(var_80.astype('int8'), relay.reshape(var_81.astype('int8'), relay.shape_of(var_80))) # shape=(4, 11)
+bop_85 = relay.multiply(bop_82.astype('int64'), relay.reshape(var_80.astype('int64'), relay.shape_of(bop_82))) # shape=(4, 11)
+bop_88 = relay.logical_xor(bop_82.astype('uint64'), relay.reshape(var_80.astype('uint64'), relay.shape_of(bop_82))) # shape=(4, 11)
+uop_91 = relay.sin(bop_85.astype('float32')) # shape=(4, 11)
+uop_93 = relay.atan(bop_85.astype('float32')) # shape=(4, 11)
+uop_95 = relay.cos(var_80.astype('float64')) # shape=(4, 11)
+bop_97 = relay.greater_equal(uop_93.astype('bool'), relay.reshape(var_80.astype('bool'), relay.shape_of(uop_93))) # shape=(4, 11)
+uop_100 = relay.log2(uop_93.astype('float64')) # shape=(4, 11)
+bop_102 = relay.equal(uop_100.astype('bool'), relay.reshape(bop_82.astype('bool'), relay.shape_of(uop_100))) # shape=(4, 11)
+uop_105 = relay.log2(bop_102.astype('float64')) # shape=(4, 11)
+var_107 = relay.var("var_107", dtype = "bool", shape = (4, 11))#candidate|107|(4, 11)|var|bool
+bop_108 = relay.logical_or(bop_102.astype('bool'), relay.reshape(var_107.astype('bool'), relay.shape_of(bop_102))) # shape=(4, 11)
+bop_111 = relay.logical_xor(uop_105.astype('uint64'), relay.reshape(bop_108.astype('uint64'), relay.shape_of(uop_105))) # shape=(4, 11)
+bop_114 = relay.not_equal(bop_111.astype('bool'), relay.reshape(var_107.astype('bool'), relay.shape_of(bop_111))) # shape=(4, 11)
+uop_117 = relay.exp(bop_114.astype('float64')) # shape=(4, 11)
+uop_119 = relay.log10(bop_97.astype('float32')) # shape=(4, 11)
+bop_121 = relay.equal(bop_102.astype('bool'), relay.reshape(bop_88.astype('bool'), relay.shape_of(bop_102))) # shape=(4, 11)
+uop_124 = relay.sin(uop_100.astype('float32')) # shape=(4, 11)
+bop_126 = relay.subtract(uop_124.astype('int8'), relay.reshape(uop_105.astype('int8'), relay.shape_of(uop_124))) # shape=(4, 11)
+var_129 = relay.var("var_129", dtype = "bool", shape = (4, 11))#candidate|129|(4, 11)|var|bool
+bop_130 = relay.multiply(bop_97.astype('int32'), relay.reshape(var_129.astype('int32'), relay.shape_of(bop_97))) # shape=(4, 11)
+bop_133 = relay.less_equal(bop_97.astype('bool'), relay.reshape(bop_111.astype('bool'), relay.shape_of(bop_97))) # shape=(4, 11)
+var_136 = relay.var("var_136", dtype = "float32", shape = (4, 11))#candidate|136|(4, 11)|var|float32
+bop_137 = relay.multiply(uop_93.astype('float64'), relay.reshape(var_136.astype('float64'), relay.shape_of(uop_93))) # shape=(4, 11)
+uop_140 = relay.log2(uop_117.astype('float64')) # shape=(4, 11)
+uop_142 = relay.asinh(uop_140.astype('float64')) # shape=(4, 11)
+bop_144 = relay.less_equal(uop_142.astype('bool'), relay.reshape(bop_126.astype('bool'), relay.shape_of(uop_142))) # shape=(4, 11)
+bop_147 = relay.minimum(uop_117.astype('float32'), relay.reshape(var_129.astype('float32'), relay.shape_of(uop_117))) # shape=(4, 11)
+bop_150 = relay.greater_equal(uop_142.astype('bool'), relay.reshape(uop_93.astype('bool'), relay.shape_of(uop_142))) # shape=(4, 11)
+bop_153 = relay.less(bop_144.astype('bool'), relay.reshape(var_80.astype('bool'), relay.shape_of(bop_144))) # shape=(4, 11)
+output = relay.Tuple([uop_91,uop_95,uop_119,bop_121,bop_130,bop_133,bop_137,bop_147,bop_150,bop_153,])
+output2 = relay.Tuple([uop_91,uop_95,uop_119,bop_121,bop_130,bop_133,bop_137,bop_147,bop_150,bop_153,])
+func_156 = relay.Function([var_80,var_81,var_107,var_129,var_136,], output)
+mod['func_156'] = func_156
+mod = relay.transform.InferType()(mod)
+mutated_mod['func_156'] = func_156
+mutated_mod = relay.transform.InferType()(mutated_mod)
+func_156_call = mutated_mod.get_global_var('func_156')
+var_158 = relay.var("var_158", dtype = "int8", shape = (4, 11))#candidate|158|(4, 11)|var|int8
+var_159 = relay.var("var_159", dtype = "int8", shape = (4, 11))#candidate|159|(4, 11)|var|int8
+var_160 = relay.var("var_160", dtype = "bool", shape = (4, 11))#candidate|160|(4, 11)|var|bool
+var_161 = relay.var("var_161", dtype = "bool", shape = (4, 11))#candidate|161|(4, 11)|var|bool
+var_162 = relay.var("var_162", dtype = "float32", shape = (4, 11))#candidate|162|(4, 11)|var|float32
+call_157 = func_156_call(var_158,var_159,var_160,var_161,var_162,)
+output = call_157
+func_163 = relay.Function([var_158,var_159,var_160,var_161,var_162,], output)
+mutated_mod['func_163'] = func_163
+mutated_mod = relay.transform.InferType()(mutated_mod)
+var_165 = relay.var("var_165", dtype = "float32", shape = (8,))#candidate|165|(8,)|var|float32
+uop_166 = relay.cosh(var_165.astype('float32')) # shape=(8,)
+bop_168 = relay.divide(uop_166.astype('float32'), relay.reshape(var_165.astype('float32'), relay.shape_of(uop_166))) # shape=(8,)
+uop_171 = relay.exp(var_165.astype('float32')) # shape=(8,)
+func_70_call = mod.get_global_var('func_70')
+func_78_call = mutated_mod.get_global_var('func_78')
+var_174 = relay.var("var_174", dtype = "float64", shape = ())#candidate|174|()|var|float64
+const_175 = relay.const([9.299359,1.484058,-1.431388,-5.448333,4.260762], dtype = "float64")#candidate|175|(5,)|const|float64
+const_176 = relay.const([[3.938646,-9.072460,-4.588229,-9.345220,-3.497521,-7.167728,4.677796,-7.524797,-8.914562,1.117954,0.424593,2.110268,3.978246,-3.324369,-0.843550,1.110666,-6.232610,8.655482,-9.012583,3.973613,8.120744,-6.543046,3.146169,-4.969979,6.433039,1.905430,8.049661,-6.072283,4.711546,-0.287998,-5.175451,6.089198,7.104410,7.267854,-7.617213,-0.791526,8.906772,-9.831663,4.328857,-8.985617,9.838518,6.890051,5.089643,3.426055,-9.635998,-0.207028,9.420611,-0.131989,-5.365959,-9.151181,-7.560385,0.490760,3.698439,-1.469371,-7.072506,2.104544],[3.035712,-1.072700,-0.141059,8.803603,-1.038007,-6.634940,-5.904860,-9.097441,-3.940955,6.196496,-2.774804,-0.395846,5.250600,-6.618818,-6.600383,6.144817,4.216305,-9.264427,6.633548,-3.449129,4.633277,4.589554,3.300305,0.157930,-1.903525,-9.802417,7.490796,-3.819997,-7.772612,-2.436813,-1.092960,-1.632649,-1.231299,7.306964,-2.492064,9.716459,-7.256009,4.858114,-2.989499,-6.049694,-9.782409,1.968664,9.881169,-6.634906,2.232049,-8.705837,-6.345562,4.735802,1.479425,-7.558325,-0.792948,-5.761616,-4.275938,0.948111,-4.910857,0.349021],[-4.610607,-9.648002,-4.521647,6.384497,9.828039,2.584694,-7.357076,-0.234958,7.456528,-6.699341,-6.143621,3.371184,-4.926061,-9.643380,-3.687934,0.096849,-2.325718,-0.579812,-2.824746,-4.807355,-3.430831,2.876913,-8.707554,-4.863767,-2.235955,-5.702295,7.690054,3.257205,-9.235194,-2.674420,0.558611,3.075638,1.303006,-4.691259,-8.907033,-6.772565,-2.092958,9.703340,6.331606,7.148930,-4.536720,9.172746,7.847209,-0.975596,-1.393605,-3.949656,-3.459787,3.875686,1.830206,-1.003107,1.402066,-5.607434,-0.786201,-8.243808,-7.623658,-1.886875],[1.280823,-3.432099,-5.766367,-9.274644,-0.498528,4.917964,7.373687,-8.686086,-8.536147,-4.853018,2.873354,-0.443241,-3.805512,-6.127688,-2.580375,-3.838497,-2.613956,-1.164693,2.016491,4.993923,9.750761,-5.416821,9.912538,9.638169,6.826853,4.279034,1.331674,4.311768,4.065125,-9.408356,-8.012348,9.525462,6.647064,3.129982,8.898255,-4.633255,5.864273,6.307957,-9.767353,2.389791,-1.353128,-7.328020,-8.012281,6.326965,7.086139,7.025168,-3.420781,-9.982429,-6.062934,-9.627336,-6.133187,-1.147724,-3.434154,8.707523,-3.996383,-8.991669]], dtype = "float64")#candidate|176|(4, 56)|const|float64
+call_173 = relay.TupleGetItem(func_70_call(relay.reshape(var_174.astype('float64'), []), relay.reshape(const_175.astype('float64'), [5,]), relay.reshape(var_174.astype('float64'), []), relay.reshape(var_174.astype('float64'), []), relay.reshape(const_176.astype('float64'), [8, 4, 7]), relay.reshape(const_175.astype('float64'), [5,]), relay.reshape(var_174.astype('float64'), []), ), 8)
+call_177 = relay.TupleGetItem(func_78_call(relay.reshape(var_174.astype('float64'), []), relay.reshape(const_175.astype('float64'), [5,]), relay.reshape(var_174.astype('float64'), []), relay.reshape(var_174.astype('float64'), []), relay.reshape(const_176.astype('float64'), [8, 4, 7]), relay.reshape(const_175.astype('float64'), [5,]), relay.reshape(var_174.astype('float64'), []), ), 8)
+var_178 = relay.var("var_178", dtype = "float32", shape = (8,))#candidate|178|(8,)|var|float32
+bop_179 = relay.equal(uop_166.astype('bool'), relay.reshape(var_178.astype('bool'), relay.shape_of(uop_166))) # shape=(8,)
+var_182 = relay.var("var_182", dtype = "float32", shape = (8,))#candidate|182|(8,)|var|float32
+bop_183 = relay.logical_or(var_165.astype('bool'), relay.reshape(var_182.astype('bool'), relay.shape_of(var_165))) # shape=(8,)
+uop_186 = relay.log10(bop_168.astype('float32')) # shape=(8,)
+uop_188 = relay.exp(uop_166.astype('float64')) # shape=(8,)
+bop_190 = relay.less(uop_188.astype('bool'), var_174.astype('bool')) # shape=(8,)
+uop_193 = relay.asinh(const_175.astype('float64')) # shape=(5,)
+uop_195 = relay.rsqrt(uop_166.astype('float32')) # shape=(8,)
+uop_197 = relay.cosh(uop_188.astype('float64')) # shape=(8,)
+var_199 = relay.var("var_199", dtype = "float64", shape = (8,))#candidate|199|(8,)|var|float64
+bop_200 = relay.left_shift(uop_197.astype('uint64'), relay.reshape(var_199.astype('uint64'), relay.shape_of(uop_197))) # shape=(8,)
+bop_203 = relay.not_equal(bop_190.astype('bool'), relay.reshape(uop_197.astype('bool'), relay.shape_of(bop_190))) # shape=(8,)
+bop_206 = relay.multiply(bop_200.astype('uint16'), relay.reshape(var_178.astype('uint16'), relay.shape_of(bop_200))) # shape=(8,)
+bop_209 = relay.bitwise_or(uop_188.astype('uint32'), relay.reshape(bop_190.astype('uint32'), relay.shape_of(uop_188))) # shape=(8,)
+uop_212 = relay.log(uop_193.astype('float64')) # shape=(5,)
+uop_214 = relay.atanh(uop_195.astype('float64')) # shape=(8,)
+bop_216 = relay.mod(bop_206.astype('float32'), relay.reshape(uop_197.astype('float32'), relay.shape_of(bop_206))) # shape=(8,)
+output = relay.Tuple([uop_171,call_173,const_176,bop_179,bop_183,uop_186,bop_203,bop_209,uop_212,uop_214,bop_216,])
+output2 = relay.Tuple([uop_171,call_177,const_176,bop_179,bop_183,uop_186,bop_203,bop_209,uop_212,uop_214,bop_216,])
+func_219 = relay.Function([var_165,var_174,var_178,var_182,var_199,], output)
+mod['func_219'] = func_219
+mod = relay.transform.InferType()(mod)
+mutated_mod['func_219'] = func_219
+mutated_mod = relay.transform.InferType()(mutated_mod)
+func_219_call = mutated_mod.get_global_var('func_219')
+var_221 = relay.var("var_221", dtype = "float32", shape = (8,))#candidate|221|(8,)|var|float32
+var_222 = relay.var("var_222", dtype = "float64", shape = ())#candidate|222|()|var|float64
+var_223 = relay.var("var_223", dtype = "float32", shape = (8,))#candidate|223|(8,)|var|float32
+var_224 = relay.var("var_224", dtype = "float32", shape = (8,))#candidate|224|(8,)|var|float32
+var_225 = relay.var("var_225", dtype = "float64", shape = (8,))#candidate|225|(8,)|var|float64
+call_220 = func_219_call(var_221,var_222,var_223,var_224,var_225,)
+output = call_220
+func_226 = relay.Function([var_221,var_222,var_223,var_224,var_225,], output)
+mutated_mod['func_226'] = func_226
+mutated_mod = relay.transform.InferType()(mutated_mod)
+var_228 = relay.var("var_228", dtype = "uint32", shape = (4,))#candidate|228|(4,)|var|uint32
+var_229 = relay.var("var_229", dtype = "uint32", shape = (4,))#candidate|229|(4,)|var|uint32
+bop_230 = relay.add(var_228.astype('uint32'), relay.reshape(var_229.astype('uint32'), relay.shape_of(var_228))) # shape=(4,)
+uop_233 = relay.log(var_228.astype('float32')) # shape=(4,)
+const_235 = relay.const([2.308405,-4.602979,-3.624381,4.248372], dtype = "float32")#candidate|235|(4,)|const|float32
+bop_236 = relay.add(uop_233.astype('int8'), relay.reshape(const_235.astype('int8'), relay.shape_of(uop_233))) # shape=(4,)
+uop_239 = relay.sigmoid(bop_236.astype('float64')) # shape=(4,)
+uop_241 = relay.atanh(uop_239.astype('float64')) # shape=(4,)
+var_243 = relay.var("var_243", dtype = "float64", shape = (4,))#candidate|243|(4,)|var|float64
+bop_244 = relay.mod(uop_239.astype('float32'), relay.reshape(var_243.astype('float32'), relay.shape_of(uop_239))) # shape=(4,)
+output = relay.Tuple([bop_230,uop_241,bop_244,])
+output2 = relay.Tuple([bop_230,uop_241,bop_244,])
+func_247 = relay.Function([var_228,var_229,var_243,], output)
+mod['func_247'] = func_247
+mod = relay.transform.InferType()(mod)
+mutated_mod['func_247'] = func_247
+mutated_mod = relay.transform.InferType()(mutated_mod)
+func_247_call = mutated_mod.get_global_var('func_247')
+var_249 = relay.var("var_249", dtype = "uint32", shape = (4,))#candidate|249|(4,)|var|uint32
+var_250 = relay.var("var_250", dtype = "uint32", shape = (4,))#candidate|250|(4,)|var|uint32
+var_251 = relay.var("var_251", dtype = "float64", shape = (4,))#candidate|251|(4,)|var|float64
+call_248 = func_247_call(var_249,var_250,var_251,)
+output = call_248
+func_252 = relay.Function([var_249,var_250,var_251,], output)
+mutated_mod['func_252'] = func_252
+mutated_mod = relay.transform.InferType()(mutated_mod)
+var_254 = relay.var("var_254", dtype = "bool", shape = (14, 5))#candidate|254|(14, 5)|var|bool
+const_255 = relay.const([[False,True,True,True,True],[True,False,False,False,False],[True,False,True,False,False],[True,False,False,False,True],[False,True,False,False,True],[True,False,True,True,True],[True,False,False,False,True],[False,False,False,False,False],[False,True,False,True,False],[False,True,False,False,True],[True,False,True,False,True],[False,True,True,True,True],[True,False,True,True,True],[False,True,True,False,False]], dtype = "bool")#candidate|255|(14, 5)|const|bool
+bop_256 = relay.logical_and(var_254.astype('bool'), relay.reshape(const_255.astype('bool'), relay.shape_of(var_254))) # shape=(14, 5)
+uop_259 = relay.atan(const_255.astype('float64')) # shape=(14, 5)
+bop_261 = relay.bitwise_or(uop_259.astype('uint8'), relay.reshape(var_254.astype('uint8'), relay.shape_of(uop_259))) # shape=(14, 5)
+func_156_call = mod.get_global_var('func_156')
+func_163_call = mutated_mod.get_global_var('func_163')
+var_265 = relay.var("var_265", dtype = "int8", shape = (44,))#candidate|265|(44,)|var|int8
+call_264 = relay.TupleGetItem(func_156_call(relay.reshape(var_265.astype('int8'), [4, 11]), relay.reshape(var_265.astype('int8'), [4, 11]), relay.reshape(var_265.astype('bool'), [4, 11]), relay.reshape(var_265.astype('bool'), [4, 11]), relay.reshape(var_265.astype('float32'), [4, 11]), ), 7)
+call_266 = relay.TupleGetItem(func_163_call(relay.reshape(var_265.astype('int8'), [4, 11]), relay.reshape(var_265.astype('int8'), [4, 11]), relay.reshape(var_265.astype('bool'), [4, 11]), relay.reshape(var_265.astype('bool'), [4, 11]), relay.reshape(var_265.astype('float32'), [4, 11]), ), 7)
+uop_267 = relay.exp(uop_259.astype('float32')) # shape=(14, 5)
+var_269 = relay.var("var_269", dtype = "float32", shape = (14, 5))#candidate|269|(14, 5)|var|float32
+bop_270 = relay.logical_xor(uop_267.astype('uint32'), relay.reshape(var_269.astype('uint32'), relay.shape_of(uop_267))) # shape=(14, 5)
+bop_273 = relay.greater_equal(bop_270.astype('bool'), relay.reshape(const_255.astype('bool'), relay.shape_of(bop_270))) # shape=(14, 5)
+uop_276 = relay.exp(uop_259.astype('float32')) # shape=(14, 5)
+bop_278 = relay.logical_and(uop_276.astype('bool'), relay.reshape(bop_256.astype('bool'), relay.shape_of(uop_276))) # shape=(14, 5)
+bop_281 = relay.not_equal(bop_261.astype('bool'), relay.reshape(bop_270.astype('bool'), relay.shape_of(bop_261))) # shape=(14, 5)
+var_284 = relay.var("var_284", dtype = "uint8", shape = (14, 5))#candidate|284|(14, 5)|var|uint8
+bop_285 = relay.left_shift(bop_261.astype('uint64'), relay.reshape(var_284.astype('uint64'), relay.shape_of(bop_261))) # shape=(14, 5)
+var_288 = relay.var("var_288", dtype = "uint32", shape = (14, 5))#candidate|288|(14, 5)|var|uint32
+bop_289 = relay.logical_or(bop_270.astype('bool'), relay.reshape(var_288.astype('bool'), relay.shape_of(bop_270))) # shape=(14, 5)
+uop_292 = relay.asinh(uop_259.astype('float64')) # shape=(14, 5)
+bop_294 = relay.greater(uop_259.astype('bool'), relay.reshape(bop_289.astype('bool'), relay.shape_of(uop_259))) # shape=(14, 5)
+uop_297 = relay.log2(bop_285.astype('float32')) # shape=(14, 5)
+uop_299 = relay.cos(uop_267.astype('float32')) # shape=(14, 5)
+bop_301 = relay.greater(uop_259.astype('bool'), relay.reshape(bop_261.astype('bool'), relay.shape_of(uop_259))) # shape=(14, 5)
+uop_304 = relay.sin(uop_267.astype('float32')) # shape=(14, 5)
+bop_306 = relay.minimum(uop_304.astype('float64'), relay.reshape(uop_292.astype('float64'), relay.shape_of(uop_304))) # shape=(14, 5)
+bop_309 = relay.left_shift(uop_299.astype('int64'), relay.reshape(uop_292.astype('int64'), relay.shape_of(uop_299))) # shape=(14, 5)
+uop_312 = relay.erf(bop_273.astype('float32')) # shape=(14, 5)
+func_219_call = mod.get_global_var('func_219')
+func_226_call = mutated_mod.get_global_var('func_226')
+var_315 = relay.var("var_315", dtype = "float32", shape = (8,))#candidate|315|(8,)|var|float32
+var_316 = relay.var("var_316", dtype = "float64", shape = ())#candidate|316|()|var|float64
+call_314 = relay.TupleGetItem(func_219_call(relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_316.astype('float64'), []), relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_315.astype('float64'), [8,]), ), 2)
+call_317 = relay.TupleGetItem(func_226_call(relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_316.astype('float64'), []), relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_315.astype('float32'), [8,]), relay.reshape(var_315.astype('float64'), [8,]), ), 2)
+output = relay.Tuple([call_264,var_265,bop_278,bop_281,bop_294,uop_297,bop_301,bop_306,bop_309,uop_312,call_314,var_315,var_316,])
+output2 = relay.Tuple([call_266,var_265,bop_278,bop_281,bop_294,uop_297,bop_301,bop_306,bop_309,uop_312,call_317,var_315,var_316,])
+func_318 = relay.Function([var_254,var_265,var_269,var_284,var_288,var_315,var_316,], output)
+mod['func_318'] = func_318
+mod = relay.transform.InferType()(mod)
+mutated_mod['func_318'] = func_318
+mutated_mod = relay.transform.InferType()(mutated_mod)
+func_318_call = mutated_mod.get_global_var('func_318')
+var_320 = relay.var("var_320", dtype = "bool", shape = (14, 5))#candidate|320|(14, 5)|var|bool
+var_321 = relay.var("var_321", dtype = "int8", shape = (44,))#candidate|321|(44,)|var|int8
+var_322 = relay.var("var_322", dtype = "float32", shape = (14, 5))#candidate|322|(14, 5)|var|float32
+var_323 = relay.var("var_323", dtype = "uint8", shape = (14, 5))#candidate|323|(14, 5)|var|uint8
+var_324 = relay.var("var_324", dtype = "uint32", shape = (14, 5))#candidate|324|(14, 5)|var|uint32
+var_325 = relay.var("var_325", dtype = "float32", shape = (8,))#candidate|325|(8,)|var|float32
+var_326 = relay.var("var_326", dtype = "float64", shape = ())#candidate|326|()|var|float64
+call_319 = func_318_call(var_320,var_321,var_322,var_323,var_324,var_325,var_326,)
+output = call_319
+func_327 = relay.Function([var_320,var_321,var_322,var_323,var_324,var_325,var_326,], output)
+mutated_mod['func_327'] = func_327
+mutated_mod = relay.transform.InferType()(mutated_mod)
+const_329 = relay.const(-5.690151, dtype = "float32")#candidate|329|()|const|float32
+uop_330 = relay.log(const_329.astype('float32')) # shape=()
+bop_332 = relay.equal(const_329.astype('bool'), uop_330.astype('bool')) # shape=()
+var_335 = relay.var("var_335", dtype = "float32", shape = (8, 6))#candidate|335|(8, 6)|var|float32
+bop_336 = relay.subtract(const_329.astype('uint64'), var_335.astype('uint64')) # shape=(8, 6)
+var_339 = relay.var("var_339", dtype = "bool", shape = (7, 11, 11))#candidate|339|(7, 11, 11)|var|bool
+bop_340 = relay.logical_and(bop_332.astype('bool'), var_339.astype('bool')) # shape=(7, 11, 11)
+bop_343 = relay.subtract(bop_332.astype('float64'), var_339.astype('float64')) # shape=(7, 11, 11)
+bop_346 = relay.subtract(bop_343.astype('int32'), bop_332.astype('int32')) # shape=(7, 11, 11)
+output = relay.Tuple([bop_336,bop_340,bop_346,])
+output2 = relay.Tuple([bop_336,bop_340,bop_346,])
+F = relay.Function([var_335,var_339,], output)
+mod['main'] = F
+mod = relay.transform.InferType()(mod)
+print('==========mod==========')
+print(mod.astext(show_meta_data=False))
+print('===================================')
+F = relay.Function([var_335,var_339,], output2)
+mutated_mod['main'] = F
+mutated_mod = relay.transform.InferType()(mutated_mod)
+print('==========mutated_mod==========')
+print(mutated_mod.astext(show_meta_data=False))
+print('===================================')
+graph, lib, params = relay.build(mod, target='llvm')
+module1 = graph_runtime.create(graph, lib, tvm.device('llvm',0))
+intrp2 = relay.build_module.create_executor('graph', mod, tvm.device('llvm',0),'llvm')
+intrp3 = relay.build_module.create_executor('debug', mod, tvm.device('llvm',0),'llvm')
+intrp4 = relay.build_module.create_executor('vm', mod, tvm.device('llvm',0),'llvm')
+graph, lib, params = relay.build(mod, target='cuda')
+module5 = graph_runtime.create(graph, lib, tvm.device('cuda',0))
+intrp6 = relay.build_module.create_executor('graph', mod, tvm.device('cuda',0),'cuda')
+intrp7 = relay.build_module.create_executor('debug', mod, tvm.device('cuda',0),'cuda')
+intrp8 = relay.build_module.create_executor('vm', mod, tvm.device('cuda',0),'cuda')
+seq = Sequential([
+	relay.transform.AlterOpLayout(),
+	relay.transform.AnnotateSpans(),
+	relay.transform.BatchingOps(),
+	relay.transform.CanonicalizeCast(),
+])
+mod = seq(mod)
+print(mod.astext(show_meta_data=False))
+graph, lib, params = relay.build(mod, target='llvm')
+module9 = graph_runtime.create(graph, lib, tvm.device('llvm',0))
+intrp10 = relay.build_module.create_executor('graph', mod, tvm.device('llvm',0),'llvm')
+intrp11 = relay.build_module.create_executor('debug', mod, tvm.device('llvm',0),'llvm')
+intrp12 = relay.build_module.create_executor('vm', mod, tvm.device('llvm',0),'llvm')
+graph, lib, params = relay.build(mod, target='cuda')
+module13 = graph_runtime.create(graph, lib, tvm.device('cuda',0))
+intrp14 = relay.build_module.create_executor('graph', mod, tvm.device('cuda',0),'cuda')
+intrp15 = relay.build_module.create_executor('debug', mod, tvm.device('cuda',0),'cuda')
+intrp16 = relay.build_module.create_executor('vm', mod, tvm.device('cuda',0),'cuda')
+graph, lib, params = relay.build(mutated_mod, target='llvm')
+module17 = graph_runtime.create(graph, lib, tvm.device('llvm',0))
+intrp18 = relay.build_module.create_executor('graph', mutated_mod, tvm.device('llvm',0),'llvm')
+intrp19 = relay.build_module.create_executor('debug', mutated_mod, tvm.device('llvm',0),'llvm')
+intrp20 = relay.build_module.create_executor('vm', mutated_mod, tvm.device('llvm',0),'llvm')
+graph, lib, params = relay.build(mutated_mod, target='cuda')
+module21 = graph_runtime.create(graph, lib, tvm.device('cuda',0))
+intrp22 = relay.build_module.create_executor('graph', mutated_mod, tvm.device('cuda',0),'cuda')
+intrp23 = relay.build_module.create_executor('debug', mutated_mod, tvm.device('cuda',0),'cuda')
+intrp24 = relay.build_module.create_executor('vm', mutated_mod, tvm.device('cuda',0),'cuda')
+input_335= np.array([[-2.598186,5.380103,-5.633977,3.076906,9.467263,2.536302],[0.356051,9.641702,1.196485,-6.720165,-3.865676,3.196745],[-3.329564,-7.490552,3.761797,-9.228606,-5.938997,-8.120856],[2.774374,-5.548125,-3.638824,-5.096590,-3.319097,1.061032],[6.148318,-0.375534,5.558538,4.579294,-1.068353,-7.628209],[-3.374016,-3.485421,-5.638454,-7.845118,-9.541786,-2.617097],[-3.976682,-1.568383,-1.982541,6.245969,-4.508795,6.670989],[9.573296,6.837690,-2.880587,6.815532,-7.111462,-2.889602]], dtype='float32')
+module1.set_input('var_335', input_335)
+input_339= np.array([[[True,True,False,False,False,False,False,True,True,True,True],[False,False,False,True,False,True,True,True,True,False,True],[True,True,True,True,True,True,True,True,False,False,False],[False,False,True,False,False,False,True,True,True,False,False],[True,True,False,True,False,True,False,True,False,True,False],[False,False,False,True,True,True,True,True,True,True,True],[False,False,True,False,True,True,True,True,True,True,True],[True,False,True,False,False,False,True,True,True,True,True],[True,False,False,False,True,True,True,False,False,False,False],[True,False,False,False,False,True,True,True,False,False,True],[False,True,True,False,False,False,True,True,True,False,True]],[[True,False,False,False,False,False,False,False,True,True,False],[True,False,False,False,True,True,True,False,False,True,True],[True,True,True,True,True,False,False,True,True,True,False],[True,True,False,True,True,False,False,True,False,True,True],[True,False,False,False,True,False,True,False,True,False,True],[False,False,False,False,False,False,True,False,False,False,True],[False,False,True,False,False,False,False,False,True,True,False],[True,False,True,False,True,True,True,True,False,False,True],[True,False,False,True,False,False,True,False,True,True,False],[False,True,True,False,True,True,True,True,True,True,True],[False,True,False,True,False,True,True,False,True,False,True]],[[True,True,True,True,False,True,False,True,False,True,False],[True,True,False,False,True,True,True,False,False,True,True],[False,False,True,True,True,False,False,False,True,True,True],[False,False,False,True,True,True,True,False,False,False,True],[False,False,False,True,True,False,True,False,True,True,False],[True,False,False,True,True,False,False,False,True,False,True],[True,True,False,True,True,False,True,True,True,True,False],[False,False,True,False,True,False,False,False,False,True,False],[False,False,True,False,False,False,False,False,True,True,True],[True,False,False,True,True,False,False,False,False,False,False],[True,True,True,True,True,True,False,False,False,False,False]],[[True,True,False,True,True,False,False,False,True,True,True],[False,False,False,False,True,True,False,True,True,True,False],[True,True,True,False,True,True,False,True,True,False,False],[True,True,True,True,False,False,True,True,True,True,False],[True,True,True,False,True,False,False,False,True,True,True],[False,True,False,False,False,False,True,False,False,True,True],[False,False,True,False,True,True,True,False,True,False,True],[False,True,False,False,True,True,True,False,False,False,True],[True,False,True,True,True,True,True,False,True,True,True],[False,True,False,True,False,True,False,True,False,False,False],[True,True,True,False,False,True,False,False,False,True,False]],[[False,False,False,True,False,False,False,True,True,True,True],[False,False,True,True,True,False,True,True,False,False,False],[True,False,True,False,True,True,True,False,False,True,True],[False,False,True,False,True,False,False,False,True,False,False],[True,True,True,True,False,True,False,True,True,True,True],[False,False,False,False,True,True,False,False,False,False,False],[True,False,True,True,False,True,True,False,False,False,True],[True,True,False,False,True,True,False,True,False,False,True],[True,False,False,False,False,False,False,False,False,True,True],[False,False,True,True,True,False,True,True,True,True,True],[True,True,False,False,True,True,True,False,False,False,False]],[[False,False,True,False,False,True,True,True,False,True,True],[False,False,True,False,False,False,True,True,True,True,False],[False,True,False,True,False,False,False,False,False,False,False],[True,True,False,True,False,True,True,True,True,True,True],[False,True,True,False,True,False,False,False,True,False,True],[True,True,False,True,True,False,True,False,True,True,True],[True,False,True,True,True,False,False,True,True,False,False],[True,False,True,True,False,True,False,False,True,True,False],[True,False,True,True,False,True,False,True,False,False,True],[True,True,False,True,True,True,True,True,False,False,True],[True,True,False,True,False,False,False,True,False,True,False]],[[False,False,False,True,True,True,False,True,False,True,False],[False,True,True,False,False,False,False,False,True,True,True],[True,False,True,False,False,True,False,True,True,False,False],[True,False,True,False,False,False,False,True,False,False,False],[True,False,False,True,False,False,False,False,False,False,False],[True,False,True,False,False,False,True,True,False,False,True],[True,False,True,True,False,False,True,True,True,False,True],[True,True,False,False,False,False,False,False,False,True,False],[True,False,False,False,True,True,False,False,False,False,False],[True,True,True,False,True,False,True,True,True,False,True],[True,False,True,True,False,True,False,False,True,True,False]]], dtype='bool')
+module1.set_input('var_339', input_339)
+module1.set_input(**params)
+module1.run()
+res2 = intrp2.evaluate()(input_335, input_339, )
+res3 = intrp3.evaluate()(input_335, input_339, )
+res4 = intrp4.evaluate()(input_335, input_339, )
+res2 = vmobj_to_list(res2)
+res3 = vmobj_to_list(res3)
+res4 = vmobj_to_list(res4)
+res1_0 = module1.get_output(0).asnumpy()
+res2_0 = res2[0].asnumpy()
+res3_0 = res3[0].asnumpy()
+res4_0 = res4[0].asnumpy()
+np.testing.assert_allclose(res1_0 ,res2_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_0 ,res3_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_0 ,res4_0, atol=1e-3, rtol=1e-3)
+(res1_0 == res2_0).all()
+(res1_0 == res3_0).all()
+(res1_0 == res4_0).all()
+res1_1 = module1.get_output(1).asnumpy()
+res2_1 = res2[1].asnumpy()
+res3_1 = res3[1].asnumpy()
+res4_1 = res4[1].asnumpy()
+np.testing.assert_allclose(res1_1 ,res2_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_1 ,res3_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_1 ,res4_1, atol=1e-3, rtol=1e-3)
+(res1_1 == res2_1).all()
+(res1_1 == res3_1).all()
+(res1_1 == res4_1).all()
+res1_2 = module1.get_output(2).asnumpy()
+res2_2 = res2[2].asnumpy()
+res3_2 = res3[2].asnumpy()
+res4_2 = res4[2].asnumpy()
+np.testing.assert_allclose(res1_2 ,res2_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_2 ,res3_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res1_2 ,res4_2, atol=1e-3, rtol=1e-3)
+(res1_2 == res2_2).all()
+(res1_2 == res3_2).all()
+(res1_2 == res4_2).all()
+module5.set_input('var_335', input_335)
+module5.set_input('var_339', input_339)
+module5.set_input(**params)
+module5.run()
+res6 = intrp6.evaluate()(input_335, input_339, )
+res7 = intrp7.evaluate()(input_335, input_339, )
+res8 = intrp8.evaluate()(input_335, input_339, )
+res6 = vmobj_to_list(res6)
+res7 = vmobj_to_list(res7)
+res8 = vmobj_to_list(res8)
+res5_0 = module5.get_output(0).asnumpy()
+res6_0 = res6[0].asnumpy()
+res7_0 = res7[0].asnumpy()
+res8_0 = res8[0].asnumpy()
+np.testing.assert_allclose(res5_0 ,res6_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_0 ,res7_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_0 ,res8_0, atol=1e-3, rtol=1e-3)
+(res5_0 == res6_0).all()
+(res5_0 == res7_0).all()
+(res5_0 == res8_0).all()
+res5_1 = module5.get_output(1).asnumpy()
+res6_1 = res6[1].asnumpy()
+res7_1 = res7[1].asnumpy()
+res8_1 = res8[1].asnumpy()
+np.testing.assert_allclose(res5_1 ,res6_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_1 ,res7_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_1 ,res8_1, atol=1e-3, rtol=1e-3)
+(res5_1 == res6_1).all()
+(res5_1 == res7_1).all()
+(res5_1 == res8_1).all()
+res5_2 = module5.get_output(2).asnumpy()
+res6_2 = res6[2].asnumpy()
+res7_2 = res7[2].asnumpy()
+res8_2 = res8[2].asnumpy()
+np.testing.assert_allclose(res5_2 ,res6_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_2 ,res7_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res5_2 ,res8_2, atol=1e-3, rtol=1e-3)
+(res5_2 == res6_2).all()
+(res5_2 == res7_2).all()
+(res5_2 == res8_2).all()
+module9.set_input('var_335', input_335)
+module9.set_input('var_339', input_339)
+module9.set_input(**params)
+module9.run()
+res10 = intrp10.evaluate()(input_335, input_339, )
+res11 = intrp11.evaluate()(input_335, input_339, )
+res12 = intrp12.evaluate()(input_335, input_339, )
+res10 = vmobj_to_list(res10)
+res11 = vmobj_to_list(res11)
+res12 = vmobj_to_list(res12)
+res9_0 = module9.get_output(0).asnumpy()
+res10_0 = res10[0].asnumpy()
+res11_0 = res11[0].asnumpy()
+res12_0 = res12[0].asnumpy()
+np.testing.assert_allclose(res9_0 ,res10_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_0 ,res11_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_0 ,res12_0, atol=1e-3, rtol=1e-3)
+(res9_0 == res10_0).all()
+(res9_0 == res11_0).all()
+(res9_0 == res12_0).all()
+res9_1 = module9.get_output(1).asnumpy()
+res10_1 = res10[1].asnumpy()
+res11_1 = res11[1].asnumpy()
+res12_1 = res12[1].asnumpy()
+np.testing.assert_allclose(res9_1 ,res10_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_1 ,res11_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_1 ,res12_1, atol=1e-3, rtol=1e-3)
+(res9_1 == res10_1).all()
+(res9_1 == res11_1).all()
+(res9_1 == res12_1).all()
+res9_2 = module9.get_output(2).asnumpy()
+res10_2 = res10[2].asnumpy()
+res11_2 = res11[2].asnumpy()
+res12_2 = res12[2].asnumpy()
+np.testing.assert_allclose(res9_2 ,res10_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_2 ,res11_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res9_2 ,res12_2, atol=1e-3, rtol=1e-3)
+(res9_2 == res10_2).all()
+(res9_2 == res11_2).all()
+(res9_2 == res12_2).all()
+module13.set_input('var_335', input_335)
+module13.set_input('var_339', input_339)
+module13.set_input(**params)
+module13.run()
+res14 = intrp14.evaluate()(input_335, input_339, )
+res15 = intrp15.evaluate()(input_335, input_339, )
+res16 = intrp16.evaluate()(input_335, input_339, )
+res14 = vmobj_to_list(res14)
+res15 = vmobj_to_list(res15)
+res16 = vmobj_to_list(res16)
+res13_0 = module13.get_output(0).asnumpy()
+res14_0 = res14[0].asnumpy()
+res15_0 = res15[0].asnumpy()
+res16_0 = res16[0].asnumpy()
+np.testing.assert_allclose(res13_0 ,res14_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_0 ,res15_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_0 ,res16_0, atol=1e-3, rtol=1e-3)
+(res13_0 == res14_0).all()
+(res13_0 == res15_0).all()
+(res13_0 == res16_0).all()
+res13_1 = module13.get_output(1).asnumpy()
+res14_1 = res14[1].asnumpy()
+res15_1 = res15[1].asnumpy()
+res16_1 = res16[1].asnumpy()
+np.testing.assert_allclose(res13_1 ,res14_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_1 ,res15_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_1 ,res16_1, atol=1e-3, rtol=1e-3)
+(res13_1 == res14_1).all()
+(res13_1 == res15_1).all()
+(res13_1 == res16_1).all()
+res13_2 = module13.get_output(2).asnumpy()
+res14_2 = res14[2].asnumpy()
+res15_2 = res15[2].asnumpy()
+res16_2 = res16[2].asnumpy()
+np.testing.assert_allclose(res13_2 ,res14_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_2 ,res15_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res13_2 ,res16_2, atol=1e-3, rtol=1e-3)
+(res13_2 == res14_2).all()
+(res13_2 == res15_2).all()
+(res13_2 == res16_2).all()
+module17.set_input('var_335', input_335)
+module17.set_input('var_339', input_339)
+module17.set_input(**params)
+module17.run()
+res18 = intrp18.evaluate()(input_335, input_339, )
+res19 = intrp19.evaluate()(input_335, input_339, )
+res20 = intrp20.evaluate()(input_335, input_339, )
+res18 = vmobj_to_list(res18)
+res19 = vmobj_to_list(res19)
+res20 = vmobj_to_list(res20)
+res17_0 = module17.get_output(0).asnumpy()
+res18_0 = res18[0].asnumpy()
+res19_0 = res19[0].asnumpy()
+res20_0 = res20[0].asnumpy()
+np.testing.assert_allclose(res17_0 ,res18_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_0 ,res19_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_0 ,res20_0, atol=1e-3, rtol=1e-3)
+(res17_0 == res18_0).all()
+(res17_0 == res19_0).all()
+(res17_0 == res20_0).all()
+res17_1 = module17.get_output(1).asnumpy()
+res18_1 = res18[1].asnumpy()
+res19_1 = res19[1].asnumpy()
+res20_1 = res20[1].asnumpy()
+np.testing.assert_allclose(res17_1 ,res18_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_1 ,res19_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_1 ,res20_1, atol=1e-3, rtol=1e-3)
+(res17_1 == res18_1).all()
+(res17_1 == res19_1).all()
+(res17_1 == res20_1).all()
+res17_2 = module17.get_output(2).asnumpy()
+res18_2 = res18[2].asnumpy()
+res19_2 = res19[2].asnumpy()
+res20_2 = res20[2].asnumpy()
+np.testing.assert_allclose(res17_2 ,res18_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_2 ,res19_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res17_2 ,res20_2, atol=1e-3, rtol=1e-3)
+(res17_2 == res18_2).all()
+(res17_2 == res19_2).all()
+(res17_2 == res20_2).all()
+module21.set_input('var_335', input_335)
+module21.set_input('var_339', input_339)
+module21.set_input(**params)
+module21.run()
+res22 = intrp22.evaluate()(input_335, input_339, )
+res23 = intrp23.evaluate()(input_335, input_339, )
+res24 = intrp24.evaluate()(input_335, input_339, )
+res22 = vmobj_to_list(res22)
+res23 = vmobj_to_list(res23)
+res24 = vmobj_to_list(res24)
+res21_0 = module21.get_output(0).asnumpy()
+res22_0 = res22[0].asnumpy()
+res23_0 = res23[0].asnumpy()
+res24_0 = res24[0].asnumpy()
+np.testing.assert_allclose(res21_0 ,res22_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_0 ,res23_0, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_0 ,res24_0, atol=1e-3, rtol=1e-3)
+(res21_0 == res22_0).all()
+(res21_0 == res23_0).all()
+(res21_0 == res24_0).all()
+res21_1 = module21.get_output(1).asnumpy()
+res22_1 = res22[1].asnumpy()
+res23_1 = res23[1].asnumpy()
+res24_1 = res24[1].asnumpy()
+np.testing.assert_allclose(res21_1 ,res22_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_1 ,res23_1, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_1 ,res24_1, atol=1e-3, rtol=1e-3)
+(res21_1 == res22_1).all()
+(res21_1 == res23_1).all()
+(res21_1 == res24_1).all()
+res21_2 = module21.get_output(2).asnumpy()
+res22_2 = res22[2].asnumpy()
+res23_2 = res23[2].asnumpy()
+res24_2 = res24[2].asnumpy()
+np.testing.assert_allclose(res21_2 ,res22_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_2 ,res23_2, atol=1e-3, rtol=1e-3)
+np.testing.assert_allclose(res21_2 ,res24_2, atol=1e-3, rtol=1e-3)
+(res21_2 == res22_2).all()
+(res21_2 == res23_2).all()
+(res21_2 == res24_2).all()
+
+'''18446744073709551608, 18446744073709551602, 18446744073709551609],
+18446744073709551613, 18446744073709551607, 18446744073709551614],
+
+'''
