@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 70, in make_backend
+    mod, params = relay.frontend.from_onnx(
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 7095, in from_onnx
+    mod = relay.transform.DynamicToStatic()(mod)
+  File "/softwares/tvm/python/tvm/ir/transform.py", line 161, in __call__
+    return _ffi_transform_api.RunPass(self, mod)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  18: TVMFuncCall
+  17: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::transform::Pass, tvm::IRModule)>::AssignTypedLambda<tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}>(tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  16: tvm::transform::Pass::operator()(tvm::IRModule) const
+  15: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  14: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  13: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::DynamicToStatic()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::transform::DynamicToStatic()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  12: tvm::relay::DynamicToStatic(tvm::relay::Function, tvm::IRModule)
+  11: tvm::relay::DynamicToStaticMutator::PrepareInput(tvm::RelayExpr const&)
+  10: tvm::transform::Pass::operator()(tvm::IRModule) const
+  9: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  8: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  7: tvm::transform::Pass::operator()(tvm::IRModule) const
+  6: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  5: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  4: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}>(tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  3: tvm::DiagnosticContext::Render()
+  2: tvm::DiagnosticRenderer::Render(tvm::DiagnosticContext const&)
+  1: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<void (tvm::DiagnosticContext)>::AssignTypedLambda<tvm::TerminalRenderer(std::ostream&)::{lambda(tvm::DiagnosticContext const&)#1}>(tvm::TerminalRenderer(std::ostream&)::{lambda(tvm::DiagnosticContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  0: tvm::ReportAt(tvm::DiagnosticContext const&, std::ostream&, tvm::Span const&, tvm::Diagnostic const&)
+  File "/softwares/tvm/src/ir/diagnostic.cc", line 236
+TVMError: The source maps are not populated for this module. Please use `tvm.relay.transform.AnnotateSpans` to attach source maps for error reporting.
+Error: The Relay type checker is unable to show the following types match:
+  Tensor[(2i64, 2i64, 1, 3), bool]
+  Tensor[(2i64, 1, 1, 3), bool]
+In particular:
+  dimension 1 conflicts: T.int64(2) does not match 1.

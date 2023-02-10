@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 76, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/softwares/tvm/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 519, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 364, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 161, in build
+    self._build(
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm.error.DiagnosticError: Traceback (most recent call last):
+  9: TVMFuncCall
+  8: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  7: tvm::relay::backend::RelayBuildModule::Build(tvm::IRModule, tvm::runtime::Array<tvm::Target, void> const&, tvm::Target const&, tvm::relay::Executor const&, tvm::relay::Runtime const&, tvm::WorkspaceMemoryPools const&, tvm::ConstantMemoryPools const&, tvm::runtime::String)
+  6: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  5: tvm::relay::backend::RelayBuildModule::OptimizeImpl(tvm::IRModule)
+  4: tvm::transform::Pass::operator()(tvm::IRModule) const
+  3: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  2: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  1: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}>(tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  0: tvm::DiagnosticContext::Render()
+  File "/softwares/tvm/src/ir/diagnostic.cc", line 103
+DiagnosticError: one or more error diagnostics were emitted, please check diagnostic render for output.

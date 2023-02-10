@@ -1,0 +1,65 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 76, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/softwares/tvm/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 624, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 478, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 202, in build
+    self._build(mod, target, target_host, executor, runtime, workspace_memory_pools, mod_name)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  37: TVMFuncCall
+  36: _ZN3tvm7runtime13PackedFuncObj9ExtractorINS0_1
+  35: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  34: tvm::relay::backend::RelayBuildModule::Build(tvm::IRModule, tvm::runtime::Map<tvm::Integer, tvm::Target, void, void> const&, tvm::Target const&, tvm::relay::Executor const&, tvm::relay::Runtime const&, tvm::WorkspaceMemoryPools const&, tvm::runtime::String)
+  33: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  32: tvm::relay::backend::RelayBuildModule::OptimizeImpl(tvm::IRModule)
+  31: tvm::transform::Pass::operator()(tvm::IRModule) const
+  30: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  29: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  28: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  27: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  26: _ZN3tvm7runtime13PackedFuncObj9ExtractorIN
+  25: tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::AlterOpLayout()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::transform::AlterOpLayout()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  24: tvm::relay::alter_op_layout::AlterOpLayout(tvm::RelayExpr const&)
+  23: tvm::relay::ForwardRewrite(tvm::RelayExpr const&, tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)> const&, std::function<tvm::runtime::ObjectRef (tvm::relay::Call const&)>, std::function<tvm::RelayExpr (tvm::RelayExpr const&)>)
+  22: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  21: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  20: tvm::relay::MixedModeMutator::DispatchVisitExpr(tvm::RelayExpr const&)
+  19: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  18: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  17: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  16: tvm::relay::ExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  15: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  14: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  13: tvm::relay::MixedModeMutator::DispatchVisitExpr(tvm::RelayExpr const&)
+  12: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  11: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  10: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  9: tvm::relay::MixedModeMutator::VisitExpr_(tvm::relay::CallNode const*)
+  8: tvm::relay::ForwardRewriter::Rewrite_(tvm::relay::CallNode const*, tvm::RelayExpr const&)
+  7: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)>::AssignTypedLambda<tvm::RelayExpr (*)(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)>(tvm::RelayExpr (*)(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&))::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  6: tvm::RelayExpr tvm::relay::LayoutRewriter<tvm::relay::alter_op_layout::AlterTransformMemorizer>(tvm::relay::Call const&, tvm::runtime::Array<tvm::RelayExpr, void> const&, tvm::runtime::ObjectRef const&)
+  5: tvm::relay::InferCorrectLayouts(tvm::relay::Call const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&)
+  4: _ZN3tvm7runtime13PackedFuncObj9ExtractorIN
+  3: tvm::runtime::TypedPackedFunc<tvm::relay::InferCorrectLayoutOutput (tvm::Attrs const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&)>::AssignTypedLambda<tvm::relay::InferCorrectLayoutOutput (*)(tvm::Attrs const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&)>(tvm::relay::InferCorrectLayoutOutput (*)(tvm::Attrs const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&))::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  2: tvm::relay::BinaryBroadcastLayout(tvm::Attrs const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&)
+  1: tvm::relay::BinaryBroadcastLayoutHelper(tvm::Attrs const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::tir::Layout, void> const&, tvm::runtime::Array<tvm::Type, void> const&)
+  0: tvm::relay::TryTransformLike(tvm::tir::Layout const&, tvm::tir::Layout const&, tvm::tir::Layout const&)
+  File "/softwares/tvm/src/relay/transforms/infer_layout_utils.cc", line 176
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+  Check failed: (mapping[c - 'a'] != -1) is false: 

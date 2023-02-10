@@ -1,0 +1,203 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 76, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/softwares/tvm/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 519, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 364, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 161, in build
+    self._build(
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  16: TVMFuncCall
+  15: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  14: tvm::relay::backend::RelayBuildModule::Build(tvm::IRModule, tvm::runtime::Array<tvm::Target, void> const&, tvm::Target const&, tvm::relay::Executor const&, tvm::relay::Runtime const&, tvm::WorkspaceMemoryPools const&, tvm::ConstantMemoryPools const&, tvm::runtime::String)
+  13: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  12: tvm::relay::backend::RelayBuildModule::OptimizeImpl(tvm::IRModule)
+  11: tvm::transform::Pass::operator()(tvm::IRModule) const
+  10: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  9: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  8: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  7: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  6: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::SimplifyExpr()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::transform::SimplifyExpr()::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  5: tvm::relay::SimplifyExpr(tvm::RelayExpr const&, tvm::IRModule const&)
+  4: tvm::relay::RewritePatterns(tvm::runtime::Array<tvm::relay::DFPatternCallback, void>, tvm::RelayExpr, tvm::IRModule)
+  3: tvm::relay::PatternRewriter::Rewrite(tvm::runtime::Array<tvm::relay::DFPatternCallback, void> const&, tvm::RelayExpr const&)
+  2: tvm::relay::InferTypeWithModule(tvm::RelayExpr const&, tvm::IRModule const&)
+  1: tvm::IRModuleNode::Add(tvm::GlobalVar const&, tvm::BaseFunc const&, bool)
+  0: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<void (tvm::IRModule const&, tvm::BaseFunc const&)>::AssignTypedLambda<tvm::relay::{lambda(tvm::IRModule const&, tvm::BaseFunc const&)#3}>(tvm::relay::{lambda(tvm::IRModule const&, tvm::BaseFunc const&)#3}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  File "/softwares/tvm/src/relay/ir/function.cc", line 156
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+
+  Check failed: fv.size() == 0 (1 vs. 0) : Function:
+fn (%i0: Tensor[(1, 3), float64] /* ty=Tensor[(1, 3), float64] */, %i1: Tensor[(1, 1), float64] /* ty=Tensor[(1, 1), float64] */, %i2: Tensor[(2, 1, 1, 1, 4), float64] /* ty=Tensor[(2, 1, 1, 1, 4), float64] */, %i3: Tensor[(2, 1, 1, 1, 4), float64] /* ty=Tensor[(2, 1, 1, 1, 4), float64] */, %i4: Tensor[(509), float64] /* ty=Tensor[(509), float64] */, %i5: Tensor[(2, 1, 1, 1, 1), float64] /* ty=Tensor[(2, 1, 1, 1, 1), float64] */, %i6: Tensor[(2, 1, 1, 1, 1), float64] /* ty=Tensor[(2, 1, 1, 1, 1), float64] */, %i7: Tensor[(2, 1, 1, 1, 1), float64] /* ty=Tensor[(2, 1, 1, 1, 1), float64] */) -> (Tensor[(1, 1, 1, 1), float64], Tensor[(1, 1), float64], Tensor[(1), float64], Tensor[(1, 1), float64], Tensor[(1, 1, 2), float64], Tensor[(1, 1, 1), float64], Tensor[(4), float64], Tensor[(1, 1, 1, 1, 2), float64], Tensor[(2, 1, 2), float64], Tensor[(1, 1, 1, 4), float64], Tensor[(2, 2), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 1, 1), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(1), int64], Tensor[(2, 2, 2, 2), float64], Tensor[(2, 2, 1), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1), float64], Tensor[(2, 1, 2), float32], Tensor[(2, 2, 1, 2), bool], Tensor[(2, 2, 1i64), int64], Tensor[(2, 1), int64], Tensor[(2, 2, 1), bool], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 1, 1, 1), float32]) {
+  %0 = trilu(%i0, 0i64 /* ty=int64 span=/Constant:0:0 */) /* ty=Tensor[(1, 3), float64] */;
+  %1 = mean(%0, axis=[0]) /* ty=Tensor[(3), float64] */;
+  %2 = strided_slice(%i4, begin=[0i64], end=[1i64], strides=[509i64], axes=[0i64]) /* ty=Tensor[(1), float64] */;
+  %3 = negative(%2) /* ty=Tensor[(1), float64] */;
+  %4 = expand_dims(%3, axis=1) /* ty=Tensor[(1, 1), float64] */;
+  %5 = nn.matmul(meta[relay.Constant][6] /* ty=Tensor[(1, 1), float64] span=Constant_3:0:0 */, %4, units=None) /* ty=Tensor[(1, 1), float64] */;
+  %6 = squeeze(%5, axis=[-1]) /* ty=Tensor[(1), float64] */;
+  %7 = sin(%6) /* ty=Tensor[(1), float64] */;
+  %8 = expand_dims(%7, axis=0) /* ty=Tensor[(1, 1), float64] */;
+  %9 = nn.matmul(%8, %i1, units=None) /* ty=Tensor[(1, 1), float64] */;
+  %10 = ceil(%1) /* ty=Tensor[(3), float64] */;
+  %11 = squeeze(%9, axis=[0]) /* ty=Tensor[(1), float64] */;
+  %12 = (%10, %11) /* ty=(Tensor[(3), float64], Tensor[(1), float64]) span=/Concat_2:0:0 */;
+  %13 = concatenate(%12) /* ty=Tensor[(4), float64] */;
+  %14 = divide(%13, 1.41421f64 /* ty=float64 span=/mlist.4/Constant:0:0 */) /* ty=Tensor[(4), float64] */;
+  %15 = cast(%14, dtype="float32") /* ty=Tensor[(4), float32] */;
+  %16 = erf(%15) /* ty=Tensor[(4), float32] */;
+  %17 = cast(%16, dtype="float64") /* ty=Tensor[(4), float64] */;
+  %18 = add(%17, 1f64 /* ty=float64 span=/mlist.4/Constant_1:0:0 */) /* ty=Tensor[(4), float64] */;
+  %19 = multiply(%13, %18) /* ty=Tensor[(4), float64] */;
+  %20 = multiply(%19, 0.5f64 /* ty=float64 span=/mlist.4/Constant_2:0:0 */) /* ty=Tensor[(4), float64] */;
+  %21 = maximum(meta[relay.Constant][1] /* ty=Tensor[(1, 1), float64] span=Constant_22:0:0 */, %20) /* ty=Tensor[(1, 4), float64] */;
+  %22 = sin(%i7) /* ty=Tensor[(2, 1, 1, 1, 1), float64] */;
+  %23 = (%22, meta[relay.Constant][9] /* ty=Tensor[(2, 1, 1, 1, 1), float64] span=/Constant_6:0:0 */, %i5, %i6) /* ty=(Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64]) span=/Concat:0:0 */;
+  %24 = nn.softmax(%i3, axis=4) /* ty=Tensor[(2, 1, 1, 1, 4), float64] */;
+  %25 = concatenate(%23, axis=4) /* ty=Tensor[(2, 1, 1, 1, 4), float64] */;
+  %26 = (%24, %i2, %25) /* ty=(Tensor[(2, 1, 1, 1, 4), float64], Tensor[(2, 1, 1, 1, 4), float64], Tensor[(2, 1, 1, 1, 4), float64]) span=/Concat_1:0:0 */;
+  %27 = concatenate(%26, axis=3) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %28 = nn.leaky_relu(%27, alpha=0.01f) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %29 = ceil(%28) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %30 = minimum(%29, %21) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %31 = mean(%30, axis=[3]) /* ty=Tensor[(2, 1, 1, 4), float64] */;
+  %32 = abs(%31) /* ty=Tensor[(2, 1, 1, 4), float64] */;
+  %33 = image.resize2d(%32, size=[1, 2], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 2), float64] */;
+  %34 = multiply(meta[relay.Constant][11] /* ty=Tensor[(1, 1, 2, 1), float64] span=/Constant_14:0:0 */, %33) /* ty=Tensor[(2, 1, 2, 2), float64] */;
+  %35 = image.resize2d(%34, size=[1, 1], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %36 = image.resize2d(%35, size=[1, 1], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %37 = subtract(%36, 0.5f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %38 = add(%36, 0.5f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %39 = ceil(%38) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %40 = floor(%38) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %41 = subtract(%39, %40) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %42 = ceil(%37) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %43 = mod(%42, 2f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %44 = subtract(1f64 /* ty=float64 span=/Round:0:0 */, %41) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %45 = abs(%43) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %46 = multiply(%44, %45) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %47 = add(%42, %46) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %48 = add(%47, meta[relay.Constant][12] /* ty=Tensor[(1, 2), float64] span=/Constant_30:0:0 */) /* ty=Tensor[(2, 1, 1, 2), float64] */;
+  %49 = nn.pad(%48, 0f /* ty=float32 span=/Pad_1:0:0 */, pad_width=[[0i64, 0i64], [1i64, 0i64], [0i64, 0i64], [0i64, 0i64]], pad_mode="edge") /* ty=Tensor[(2, 2, 1, 2), float64] */;
+  %50 = argmax(%48, axis=[3]) /* ty=Tensor[(2, 1, 1), int32] */;
+  %51 = cast(%50, dtype="int64") /* ty=Tensor[(2, 1, 1), int64] */;
+  %52 = squeeze(%51, axis=[1]) /* ty=Tensor[(2, 1), int64] */;
+  %53 = reshape(%49, newshape=[2, 2, 2]) /* ty=Tensor[(2, 2, 2), float64] */;
+  %54 = maximum(%53, %49) /* ty=Tensor[(2, 2, 2, 2), float64] */;
+  %55 = cast(%49, dtype="float32") /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %56 = reshape(%55, newshape=[-1, 2]) /* ty=Tensor[(4, 2), float32] */;
+  %57 = nn.dense(%56, meta[relay.Constant][15] /* ty=Tensor[(1, 2), float32] span=/mlist.5/MatMul:0:0 */, units=None, out_dtype="float32") /* ty=Tensor[(4, 1), float32] */;
+  %58 = reshape(%57, newshape=[2, 2, 1, 1]) /* ty=Tensor[(2, 2, 1, 1), float32] */;
+  %59 = add(meta[relay.Constant][14] /* ty=Tensor[(1), float32] span=/mlist.5/Add.mlist.5.bias:0:0 */, %58) /* ty=Tensor[(2, 2, 1, 1), float32] */;
+  %60 = nn.softmax(%55, axis=0) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %61 = multiply(%60, meta[relay.Constant][16] /* ty=Tensor[(2, 1, 1), float32] */) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %62 = image.resize1d(%53, size=[1], roi=[0f, 0f], rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 2, 1), float64] */;
+  %63 = nn.pad(%62, 0.5f64 /* ty=float64 span=/Pad_2:0:0 */, pad_width=[[0i64, 0i64], [0i64, 0i64], [0i64, 0i64]]) /* ty=Tensor[(2, 2, 1), float64] */;
+  %64 = log(%63) /* ty=Tensor[(2, 2, 1), float64] */;
+  %65 = nn.relu(%60) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %66 = tan(%60) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %67 = add(%52, %51) /* ty=Tensor[(2, 2, 1), int64] */;
+  %68 = subtract(%67, %51) /* ty=Tensor[(2, 2, 1), int64] */;
+  %69 = broadcast_to(%51, shape=[2i64, 1i64, 1i64]) /* ty=Tensor[(2i64, 1i64, 1i64), int64] */;
+  %70 = cast(%67, dtype="int32") /* ty=Tensor[(2, 2, 1), int32] */;
+  %71 = argmax(%70, axis=[1]) /* ty=Tensor[(2, 1), int32] */;
+  %72 = sin(%i7) /* ty=Tensor[(2, 1, 1, 1, 1), float64] */;
+  %73 = (%72, meta[relay.Constant][19] /* ty=Tensor[(2, 1, 1, 1, 1), float64] span=/Constant_6:0:0 */, %i5, %i6) /* ty=(Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64]) span=/Concat:0:0 */;
+  %74 = nn.softmax(%i3, axis=4) /* ty=Tensor[(2, 1, 1, 1, 4), float64] */;
+  %75 = concatenate(%73, axis=4) /* ty=Tensor[(2, 1, 1, 1, 4), float64] */;
+  %76 = (%74, %i2, %75) /* ty=(Tensor[(2, 1, 1, 1, 4), float64], Tensor[(2, 1, 1, 1, 4), float64], Tensor[(2, 1, 1, 1, 4), float64]) span=/Concat_1:0:0 */;
+  %77 = concatenate(%76, axis=3) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %78 = nn.leaky_relu(%77, alpha=0.01f) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %79 = trilu(%i0, 0i64 /* ty=int64 span=/Constant:0:0 */) /* ty=Tensor[(1, 3), float64] */;
+  %80 = mean(%79, axis=[0]) /* ty=Tensor[(3), float64] */;
+  %81 = strided_slice(%i4, begin=[0i64], end=[1i64], strides=[509i64], axes=[0i64]) /* ty=Tensor[(1), float64] */;
+  %82 = negative(%81) /* ty=Tensor[(1), float64] */;
+  %83 = expand_dims(%82, axis=1) /* ty=Tensor[(1, 1), float64] */;
+  %84 = nn.matmul(meta[relay.Constant][21] /* ty=Tensor[(1, 1), float64] span=Constant_3:0:0 */, %83, units=None) /* ty=Tensor[(1, 1), float64] */;
+  %85 = squeeze(%84, axis=[-1]) /* ty=Tensor[(1), float64] */;
+  %86 = sin(%85) /* ty=Tensor[(1), float64] */;
+  %87 = expand_dims(%86, axis=0) /* ty=Tensor[(1, 1), float64] */;
+  free_var %i11: Tensor[(1, 1), float64] /* ty=Tensor[(1, 1), float64] span=/MatMul_1.i1:0:0 */;
+  %88 = nn.matmul(%87, %i11, units=None) /* ty=Tensor[(1, 1), float64] */;
+  %89 = ceil(%80) /* ty=Tensor[(3), float64] */;
+  %90 = squeeze(%88, axis=[0]) /* ty=Tensor[(1), float64] */;
+  %91 = (%89, %90) /* ty=(Tensor[(3), float64], Tensor[(1), float64]) span=/Concat_2:0:0 */;
+  %92 = concatenate(%91) /* ty=Tensor[(4), float64] */;
+  %93 = divide(%92, 1.41421f64 /* ty=float64 span=/mlist.4/Constant:0:0 */) /* ty=Tensor[(4), float64] */;
+  %94 = cast(%93, dtype="float32") /* ty=Tensor[(4), float32] */;
+  %95 = erf(%94) /* ty=Tensor[(4), float32] */;
+  %96 = cast(%95, dtype="float64") /* ty=Tensor[(4), float64] */;
+  %97 = add(%96, 1f64 /* ty=float64 span=/mlist.4/Constant_1:0:0 */) /* ty=Tensor[(4), float64] */;
+  %98 = multiply(%92, %97) /* ty=Tensor[(4), float64] */;
+  %99 = multiply(%98, 0.5f64 /* ty=float64 span=/mlist.4/Constant_2:0:0 */) /* ty=Tensor[(4), float64] */;
+  %100 = ceil(%78) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %101 = maximum(meta[relay.Constant][20] /* ty=Tensor[(1, 1), float64] span=Constant_22:0:0 */, %99) /* ty=Tensor[(1, 4), float64] */;
+  %102 = minimum(%100, %101) /* ty=Tensor[(2, 1, 1, 3, 4), float64] */;
+  %103 = mean(%102, axis=[3]) /* ty=Tensor[(2, 1, 1, 4), float64] */;
+  %104 = abs(%103) /* ty=Tensor[(2, 1, 1, 4), float64] */;
+  %105 = image.resize2d(%104, size=[1, 2], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 2), float64] */;
+  %106 = multiply(meta[relay.Constant][18] /* ty=Tensor[(1, 1, 2, 1), float64] span=/Constant_14:0:0 */, %105) /* ty=Tensor[(2, 1, 2, 2), float64] */;
+  %107 = image.resize2d(%106, size=[1, 1], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %108 = image.resize2d(%107, size=[1, 1], roi=[0f, 0f, 0f, 0f], method="cubic", rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %109 = subtract(%108, 0.5f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %110 = add(%108, 0.5f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %111 = ceil(%110) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %112 = floor(%110) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %113 = subtract(%111, %112) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %114 = ceil(%109) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %115 = mod(%114, 2f64 /* ty=float64 span=/Round:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %116 = subtract(1f64 /* ty=float64 span=/Round:0:0 */, %113) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %117 = abs(%115) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %118 = multiply(%116, %117) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %119 = add(%114, %118) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %120 = add(%119, meta[relay.Constant][22] /* ty=Tensor[(1, 2), float64] span=/Constant_30:0:0 */) /* ty=Tensor[(2, 1, 1, 2), float64] */;
+  %121 = nn.pad(%120, 0f /* ty=float32 span=/Pad_1:0:0 */, pad_width=[[0i64, 0i64], [1i64, 0i64], [0i64, 0i64], [0i64, 0i64]], pad_mode="edge") /* ty=Tensor[(2, 2, 1, 2), float64] */;
+  %122 = cast(%121, dtype="float32") /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %123 = nn.softmax(%122, axis=0) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %124 = sqrt(%123) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %125 = multiply(%124, 2f /* ty=float32 */) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %126 = sigmoid(%125) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %127 = power(%125, %65) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %128 = nn.pad(%127, 0f /* ty=float32 span=/mlist.10/Pad:0:0 */, pad_width=[[0i64, 0i64], [0i64, 0i64], [255i64, 255i64], [255i64, 255i64]]) /* ty=Tensor[(2, 2, 511, 512), float32] */;
+  %129 = nn.avg_pool2d(%128, pool_size=[511, 510], strides=[510, 510], padding=[0, 0, 0, 0]) /* ty=Tensor[(2, 2, 1, 1), float32] */;
+  %130 = minimum(%129, %129) /* ty=Tensor[(2, 2, 1, 1), float32] */;
+  %131 = nn.conv2d(%130, meta[relay.Constant][23] /* ty=Tensor[(1, 2, 1, 1), float32] span=/mlist.11/Conv.mlist.11.weight:0:0 */, padding=[0, 0, 0, 0], channels=1, kernel_size=[1, 1]) /* ty=Tensor[(2, 1, 1, 1), float32] */;
+  %132 = mean(%21, axis=[0]) /* ty=Tensor[(4), float64] */;
+  %133 = strided_slice(%32, begin=[-2i64], end=[-1i64], strides=[2i64], axes=[0i64]) /* ty=Tensor[(1, 1, 1, 4), float64] */;
+  %134 = nn.pad(%35, 0f /* ty=float32 span=/Pad:0:0 */, pad_width=[[0i64, 0i64], [0i64, 0i64], [0i64, 0i64], [0i64, 0i64]], pad_mode="reflect") /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %135 = sum(%36, axis=[1]) /* ty=Tensor[(2, 1, 1), float64] */;
+  %136 = image.resize2d(%48, size=[1, 1], roi=[0f, 0f, 0f, 0f], rounding_method="floor", cubic_alpha=-0.75f) /* ty=Tensor[(2, 1, 1, 1), float64] */;
+  %137 = acos(%49) /* ty=Tensor[(2, 2, 1, 2), float64] */;
+  %138 = maximum(%49, meta[relay.Constant][13] /* ty=Tensor[(1, 2), float64] span=Constant_44:0:0 */) /* ty=Tensor[(2, 2, 1, 2), float64] */;
+  %139 = sum(%52, axis=[0]) /* ty=Tensor[(1), int64] */;
+  %140 = minimum(%53, %54) /* ty=Tensor[(2, 2, 2, 2), float64] */;
+  %141 = min(%59, axis=[2]) /* ty=Tensor[(2, 2, 1), float32] */;
+  %142 = add(%61, meta[relay.Constant][17] /* ty=Tensor[(2, 1, 1), float32] */) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %143 = divide(%64, 0.693147f64 /* ty=float64 span=/Constant_65:0:0 */) /* ty=Tensor[(2, 2, 1), float64] */;
+  %144 = max(%65, axis=[1]) /* ty=Tensor[(2, 1, 2), float32] */;
+  %145 = cast(%66, dtype="bool") /* ty=Tensor[(2, 2, 1, 2), bool] */;
+  %146 = multiply(%68, %69) /* ty=Tensor[(2, 2, 1i64), int64] */;
+  %147 = cast(%71, dtype="int64") /* ty=Tensor[(2, 1), int64] */;
+  %148 = cast(%70, dtype="bool") /* ty=Tensor[(2, 2, 1), bool] */;
+  %149 = power(%125, %55) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %150 = nn.pad(%126, 0.5f /* ty=float32 span=/Pad_3:0:0 */, pad_width=[[0i64, 0i64], [0i64, 0i64], [0i64, 0i64], [0i64, 0i64]]) /* ty=Tensor[(2, 2, 1, 2), float32] */;
+  %151 = nn.bias_add(%131, meta[relay.Constant][24] /* ty=Tensor[(1), float32] span=/mlist.11/Conv.mlist.11.bias:0:0 */) /* ty=Tensor[(2, 1, 1, 1), float32] */;
+  (meta[relay.Constant][0] /* ty=Tensor[(1, 1, 1, 1), float64] span=Constant_13:0:0 */, meta[relay.Constant][1] /* ty=Tensor[(1, 1), float64] span=Constant_22:0:0 */, meta[relay.Constant][2] /* ty=Tensor[(1), float64] span=Constant_23:0:0 */, meta[relay.Constant][3] /* ty=Tensor[(1, 1), float64] span=Constant_26:0:0 */, meta[relay.Constant][4] /* ty=Tensor[(1, 1, 2), float64] span=Constant_36:0:0 */, meta[relay.Constant][5] /* ty=Tensor[(1, 1, 1), float64] span=Constant_38:0:0 */, %132, meta[relay.Constant][7] /* ty=Tensor[(1, 1, 1, 1, 2), float64] span=Constant_41:0:0 */, meta[relay.Constant][8] /* ty=Tensor[(2, 1, 2), float64] span=Constant_45:0:0 */, %133, meta[relay.Constant][10] /* ty=Tensor[(2, 2), float64] span=Constant_60:0:0 */, %134, %135, %136, %137, %138, %139, %140, %141, %142, %143, %144, %145, %146, %147, %148, %149, %150, %151) /* ty=(Tensor[(1, 1, 1, 1), float64], Tensor[(1, 1), float64], Tensor[(1), float64], Tensor[(1, 1), float64], Tensor[(1, 1, 2), float64], Tensor[(1, 1, 1), float64], Tensor[(4), float64], Tensor[(1, 1, 1, 1, 2), float64], Tensor[(2, 1, 2), float64], Tensor[(1, 1, 1, 4), float64], Tensor[(2, 2), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 1, 1), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(1), int64], Tensor[(2, 2, 2, 2), float64], Tensor[(2, 2, 1), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1), float64], Tensor[(2, 1, 2), float32], Tensor[(2, 2, 1, 2), bool], Tensor[(2, 2, 1i64), int64], Tensor[(2, 1), int64], Tensor[(2, 2, 1), bool], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 1, 1, 1), float32]) */
+} /* ty=fn (Tensor[(1, 3), float64], Tensor[(1, 1), float64], Tensor[(2, 1, 1, 1, 4), float64], Tensor[(2, 1, 1, 1, 4), float64], Tensor[(509), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64], Tensor[(2, 1, 1, 1, 1), float64]) -> (Tensor[(1, 1, 1, 1), float64], Tensor[(1, 1), float64], Tensor[(1), float64], Tensor[(1, 1), float64], Tensor[(1, 1, 2), float64], Tensor[(1, 1, 1), float64], Tensor[(4), float64], Tensor[(1, 1, 1, 1, 2), float64], Tensor[(2, 1, 2), float64], Tensor[(1, 1, 1, 4), float64], Tensor[(2, 2), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 1, 1), float64], Tensor[(2, 1, 1, 1), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(2, 2, 1, 2), float64], Tensor[(1), int64], Tensor[(2, 2, 2, 2), float64], Tensor[(2, 2, 1), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1), float64], Tensor[(2, 1, 2), float32], Tensor[(2, 2, 1, 2), bool], Tensor[(2, 2, 1i64), int64], Tensor[(2, 1), int64], Tensor[(2, 2, 1), bool], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 2, 1, 2), float32], Tensor[(2, 1, 1, 1), float32]) */
+
+contains free variables: [Var(i1, ty=TensorType([1, 1], float64))]

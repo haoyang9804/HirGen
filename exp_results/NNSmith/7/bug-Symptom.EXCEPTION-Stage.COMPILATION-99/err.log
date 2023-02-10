@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 70, in make_backend
+    mod, params = relay.frontend.from_onnx(
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 7089, in from_onnx
+    mod, params = g.from_onnx(graph, opset)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 6706, in from_onnx
+    self._construct_nodes(graph)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 6821, in _construct_nodes
+    op = self._convert_operator(op_name, inputs, attr, self.opset)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 6947, in _convert_operator
+    sym = convert_map[op_name](inputs, attrs, self._params)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 3027, in _impl_v13
+    if not infer_shape(inputs[0]):  # promote scalar to 1-D tensor
+  File "/softwares/tvm/python/tvm/relay/frontend/common.py", line 530, in infer_shape
+    out_type = infer_type(inputs, mod=mod)
+  File "/softwares/tvm/python/tvm/relay/frontend/common.py", line 505, in infer_type
+    new_mod = _transform.InferType()(new_mod)
+  File "/softwares/tvm/python/tvm/ir/transform.py", line 161, in __call__
+    return _ffi_transform_api.RunPass(self, mod)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  9: TVMFuncCall
+  8: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::transform::Pass, tvm::IRModule)>::AssignTypedLambda<tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}>(tvm::transform::{lambda(tvm::transform::Pass, tvm::IRModule)#7}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  7: tvm::transform::Pass::operator()(tvm::IRModule) const
+  6: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  5: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  4: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1}>(tvm::relay::transform::InferType()::{lambda(tvm::IRModule, tvm::transform::PassContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  3: tvm::DiagnosticContext::Render()
+  2: tvm::DiagnosticRenderer::Render(tvm::DiagnosticContext const&)
+  1: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<void (tvm::DiagnosticContext)>::AssignTypedLambda<tvm::TerminalRenderer(std::ostream&)::{lambda(tvm::DiagnosticContext const&)#1}>(tvm::TerminalRenderer(std::ostream&)::{lambda(tvm::DiagnosticContext const&)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  0: tvm::ReportAt(tvm::DiagnosticContext const&, std::ostream&, tvm::Span const&, tvm::Diagnostic const&)
+  File "/softwares/tvm/src/ir/diagnostic.cc", line 236
+TVMError: The source maps are not populated for this module. Please use `tvm.relay.transform.AnnotateSpans` to attach source maps for error reporting.
+Error: Incompatible broadcast type TensorType([T.int64(1), T.int64(8), T.int64(3)], int32) and TensorType([T.int64(1), T.int64(8), T.int64(3), T.int64(1)], int32)

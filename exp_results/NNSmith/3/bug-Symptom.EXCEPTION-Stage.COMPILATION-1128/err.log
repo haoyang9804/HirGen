@@ -1,0 +1,488 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 76, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/softwares/tvm/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 624, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 478, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 202, in build
+    self._build(mod, target, target_host, executor, runtime, workspace_memory_pools, mod_name)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  8: TVMFuncCall
+  7: _ZN3tvm7runtime13PackedFuncObj9ExtractorINS0_1
+  6: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  5: tvm::relay::backend::RelayBuildModule::Build(tvm::IRModule, tvm::runtime::Map<tvm::Integer, tvm::Target, void, void> const&, tvm::Target const&, tvm::relay::Executor const&, tvm::relay::Runtime const&, tvm::WorkspaceMemoryPools const&, tvm::runtime::String)
+  4: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  3: tvm::build(tvm::runtime::Map<tvm::Target, tvm::IRModule, void, void> const&, tvm::Target const&)
+  2: tvm::codegen::Build(tvm::IRModule, tvm::Target)
+  1: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::runtime::Module (tvm::IRModule, tvm::Target)>::AssignTypedLambda<tvm::codegen::{lambda(tvm::IRModule, tvm::Target)#1}>(tvm::codegen::{lambda(tvm::IRModule, tvm::Target)#1}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  0: tvm::codegen::LLVMModuleNode::Init(tvm::IRModule const&, tvm::Target const&)
+  File "/softwares/tvm/src/target/llvm/llvm_module.cc", line 331
+TVMError: LLVM module verification failed with the following errors: 
+Both operands to a binary operator are not of the same type!
+  %cse_var_1.1 = add nsw i64 %cse_var_2, i32 1
+Both operands to a binary operator are not of the same type!
+  %28 = add nuw nsw i64 %22, i32 1
+Both operands to ICmp instruction are not of the same type!
+  %29 = icmp ult i32 %28, i64 511
+Both operands to a binary operator are not of the same type!
+  %34 = add i32 %33, i64 %18
+Both operands to a binary operator are not of the same type!
+  %35 = add nsw i32 %34, i64 255
+Both operands to a binary operator are not of the same type!
+  %40 = add i64 %19, i32 %39
+Both operands to a binary operator are not of the same type!
+  %41 = add i32 %40, i64 %21
+Both operands to a binary operator are not of the same type!
+  %53 = add nuw nsw i64 %48, i32 1
+Both operands to ICmp instruction are not of the same type!
+  %54 = icmp ult i32 %53, i64 511
+Both operands to a binary operator are not of the same type!
+  %56 = add i32 %53, i64 %19
+Both operands to a binary operator are not of the same type!
+  %59 = add nuw nsw i64 %48, i32 2
+Both operands to ICmp instruction are not of the same type!
+  %60 = icmp ult i32 %59, i64 511
+Both operands to a binary operator are not of the same type!
+  %61 = add i32 %59, i64 %19
+Both operands to a binary operator are not of the same type!
+  %64 = add nuw nsw i64 %48, i32 3
+Both operands to ICmp instruction are not of the same type!
+  %65 = icmp ult i32 %64, i64 511
+Both operands to a binary operator are not of the same type!
+  %66 = add i32 %64, i64 %19
+Both operands to a binary operator are not of the same type!
+  %69 = add nuw nsw i64 %48, i32 4
+Both operands to ICmp instruction are not of the same type!
+  %70 = icmp ult i32 %69, i64 511
+Both operands to a binary operator are not of the same type!
+  %71 = add i32 %69, i64 %19
+Both operands to a binary operator are not of the same type!
+  %74 = add nuw nsw i64 %48, i32 5
+Both operands to ICmp instruction are not of the same type!
+  %75 = icmp ult i32 %74, i64 511
+Both operands to a binary operator are not of the same type!
+  %76 = add i32 %74, i64 %19
+Both operands to a binary operator are not of the same type!
+  %79 = add nuw nsw i64 %48, i32 6
+Both operands to ICmp instruction are not of the same type!
+  %80 = icmp ult i32 %79, i64 511
+Both operands to a binary operator are not of the same type!
+  %81 = add i32 %79, i64 %19
+Both operands to a binary operator are not of the same type!
+  %84 = add nuw nsw i64 %48, i32 7
+Both operands to ICmp instruction are not of the same type!
+  %85 = icmp ult i32 %84, i64 511
+Both operands to a binary operator are not of the same type!
+  %86 = add i32 %84, i64 %19
+Both operands to a binary operator are not of the same type!
+  %89 = add nuw nsw i64 %48, i32 8
+Both operands to ICmp instruction are not of the same type!
+  %90 = icmp ult i32 %89, i64 511
+Both operands to a binary operator are not of the same type!
+  %91 = add i32 %89, i64 %19
+Both operands to a binary operator are not of the same type!
+  %94 = add nuw nsw i64 %48, i32 9
+Both operands to ICmp instruction are not of the same type!
+  %95 = icmp ult i32 %94, i64 511
+Both operands to a binary operator are not of the same type!
+  %96 = add i32 %94, i64 %19
+Both operands to a binary operator are not of the same type!
+  %99 = add nuw nsw i64 %48, i32 10
+Both operands to ICmp instruction are not of the same type!
+  %100 = icmp ult i32 %99, i64 511
+Both operands to a binary operator are not of the same type!
+  %101 = add i32 %99, i64 %19
+Both operands to a binary operator are not of the same type!
+  %104 = add nuw nsw i64 %48, i32 11
+Both operands to ICmp instruction are not of the same type!
+  %105 = icmp ult i32 %104, i64 511
+Both operands to a binary operator are not of the same type!
+  %106 = add i32 %104, i64 %19
+Both operands to a binary operator are not of the same type!
+  %109 = add nuw nsw i64 %48, i32 12
+Both operands to ICmp instruction are not of the same type!
+  %110 = icmp ult i32 %109, i64 511
+Both operands to a binary operator are not of the same type!
+  %111 = add i32 %109, i64 %19
+Both operands to a binary operator are not of the same type!
+  %114 = add nuw nsw i64 %48, i32 13
+Both operands to ICmp instruction are not of the same type!
+  %115 = icmp ult i32 %114, i64 511
+Both operands to a binary operator are not of the same type!
+  %116 = add i32 %114, i64 %19
+Both operands to a binary operator are not of the same type!
+  %119 = add nuw nsw i64 %48, i32 14
+Both operands to ICmp instruction are not of the same type!
+  %120 = icmp ult i32 %119, i64 511
+Both operands to a binary operator are not of the same type!
+  %121 = add i32 %119, i64 %19
+Both operands to a binary operator are not of the same type!
+  %124 = add nuw nsw i64 %48, i32 15
+Both operands to ICmp instruction are not of the same type!
+  %125 = icmp ult i32 %124, i64 511
+Both operands to a binary operator are not of the same type!
+  %126 = add i32 %124, i64 %19
+Both operands to a binary operator are not of the same type!
+  %129 = add i32 %53, i64 %19
+Both operands to a binary operator are not of the same type!
+  %130 = add i32 %129, i64 %21
+Both operands to a binary operator are not of the same type!
+  %132 = add nuw nsw i64 %48, i32 2
+Both operands to ICmp instruction are not of the same type!
+  %133 = icmp ult i32 %132, i64 511
+Both operands to a binary operator are not of the same type!
+  %134 = add i32 %132, i64 %19
+Both operands to a binary operator are not of the same type!
+  %135 = add i32 %134, i64 %21
+Both operands to a binary operator are not of the same type!
+  %137 = add nuw nsw i64 %48, i32 3
+Both operands to ICmp instruction are not of the same type!
+  %138 = icmp ult i32 %137, i64 511
+Both operands to a binary operator are not of the same type!
+  %139 = add i32 %137, i64 %19
+Both operands to a binary operator are not of the same type!
+  %140 = add i32 %139, i64 %21
+Both operands to a binary operator are not of the same type!
+  %142 = add nuw nsw i64 %48, i32 4
+Both operands to ICmp instruction are not of the same type!
+  %143 = icmp ult i32 %142, i64 511
+Both operands to a binary operator are not of the same type!
+  %144 = add i32 %142, i64 %19
+Both operands to a binary operator are not of the same type!
+  %145 = add i32 %144, i64 %21
+Both operands to a binary operator are not of the same type!
+  %147 = add nuw nsw i64 %48, i32 5
+Both operands to ICmp instruction are not of the same type!
+  %148 = icmp ult i32 %147, i64 511
+Both operands to a binary operator are not of the same type!
+  %149 = add i32 %147, i64 %19
+Both operands to a binary operator are not of the same type!
+  %150 = add i32 %149, i64 %21
+Both operands to a binary operator are not of the same type!
+  %152 = add nuw nsw i64 %48, i32 6
+Both operands to ICmp instruction are not of the same type!
+  %153 = icmp ult i32 %152, i64 511
+Both operands to a binary operator are not of the same type!
+  %154 = add i32 %152, i64 %19
+Both operands to a binary operator are not of the same type!
+  %155 = add i32 %154, i64 %21
+Both operands to a binary operator are not of the same type!
+  %157 = add nuw nsw i64 %48, i32 7
+Both operands to ICmp instruction are not of the same type!
+  %158 = icmp ult i32 %157, i64 511
+Both operands to a binary operator are not of the same type!
+  %159 = add i32 %157, i64 %19
+Both operands to a binary operator are not of the same type!
+  %160 = add i32 %159, i64 %21
+Both operands to a binary operator are not of the same type!
+  %162 = add nuw nsw i64 %48, i32 8
+Both operands to ICmp instruction are not of the same type!
+  %163 = icmp ult i32 %162, i64 511
+Both operands to a binary operator are not of the same type!
+  %164 = add i32 %162, i64 %19
+Both operands to a binary operator are not of the same type!
+  %165 = add i32 %164, i64 %21
+Both operands to a binary operator are not of the same type!
+  %167 = add nuw nsw i64 %48, i32 9
+Both operands to ICmp instruction are not of the same type!
+  %168 = icmp ult i32 %167, i64 511
+Both operands to a binary operator are not of the same type!
+  %169 = add i32 %167, i64 %19
+Both operands to a binary operator are not of the same type!
+  %170 = add i32 %169, i64 %21
+Both operands to a binary operator are not of the same type!
+  %172 = add nuw nsw i64 %48, i32 10
+Both operands to ICmp instruction are not of the same type!
+  %173 = icmp ult i32 %172, i64 511
+Both operands to a binary operator are not of the same type!
+  %174 = add i32 %172, i64 %19
+Both operands to a binary operator are not of the same type!
+  %175 = add i32 %174, i64 %21
+Both operands to a binary operator are not of the same type!
+  %177 = add nuw nsw i64 %48, i32 11
+Both operands to ICmp instruction are not of the same type!
+  %178 = icmp ult i32 %177, i64 511
+Both operands to a binary operator are not of the same type!
+  %179 = add i32 %177, i64 %19
+Both operands to a binary operator are not of the same type!
+  %180 = add i32 %179, i64 %21
+Both operands to a binary operator are not of the same type!
+  %182 = add nuw nsw i64 %48, i32 12
+Both operands to ICmp instruction are not of the same type!
+  %183 = icmp ult i32 %182, i64 511
+Both operands to a binary operator are not of the same type!
+  %184 = add i32 %182, i64 %19
+Both operands to a binary operator are not of the same type!
+  %185 = add i32 %184, i64 %21
+Both operands to a binary operator are not of the same type!
+  %187 = add nuw nsw i64 %48, i32 13
+Both operands to ICmp instruction are not of the same type!
+  %188 = icmp ult i32 %187, i64 511
+Both operands to a binary operator are not of the same type!
+  %189 = add i32 %187, i64 %19
+Both operands to a binary operator are not of the same type!
+  %190 = add i32 %189, i64 %21
+Both operands to a binary operator are not of the same type!
+  %192 = add nuw nsw i64 %48, i32 14
+Both operands to ICmp instruction are not of the same type!
+  %193 = icmp ult i32 %192, i64 511
+Both operands to a binary operator are not of the same type!
+  %194 = add i32 %192, i64 %19
+Both operands to a binary operator are not of the same type!
+  %195 = add i32 %194, i64 %21
+Both operands to a binary operator are not of the same type!
+  %197 = add nuw nsw i64 %48, i32 15
+Both operands to ICmp instruction are not of the same type!
+  %198 = icmp ult i32 %197, i64 511
+Both operands to a binary operator are not of the same type!
+  %199 = add i32 %197, i64 %19
+Both operands to a binary operator are not of the same type!
+  %200 = add i32 %199, i64 %21
+Both operands to a binary operator are not of the same type!
+  %202 = add i32 %28, i64 %19
+Both operands to a binary operator are not of the same type!
+  %203 = add i32 %202, i64 %21
+Both operands to a binary operator are not of the same type!
+  %205 = add nuw nsw i64 %22, i32 2
+Both operands to ICmp instruction are not of the same type!
+  %206 = icmp ult i32 %205, i64 511
+Both operands to a binary operator are not of the same type!
+  %207 = add i32 %205, i64 %19
+Both operands to a binary operator are not of the same type!
+  %208 = add i32 %207, i64 %21
+Both operands to a binary operator are not of the same type!
+  %210 = add nuw nsw i64 %22, i32 3
+Both operands to ICmp instruction are not of the same type!
+  %211 = icmp ult i32 %210, i64 511
+Both operands to a binary operator are not of the same type!
+  %212 = add i32 %210, i64 %19
+Both operands to a binary operator are not of the same type!
+  %213 = add i32 %212, i64 %21
+Both operands to a binary operator are not of the same type!
+  %215 = add nuw nsw i64 %22, i32 4
+Both operands to ICmp instruction are not of the same type!
+  %216 = icmp ult i32 %215, i64 511
+Both operands to a binary operator are not of the same type!
+  %217 = add i32 %215, i64 %19
+Both operands to a binary operator are not of the same type!
+  %218 = add i32 %217, i64 %21
+Both operands to a binary operator are not of the same type!
+  %220 = add nuw nsw i64 %22, i32 5
+Both operands to ICmp instruction are not of the same type!
+  %221 = icmp ult i32 %220, i64 511
+Both operands to a binary operator are not of the same type!
+  %222 = add i32 %220, i64 %19
+Both operands to a binary operator are not of the same type!
+  %223 = add i32 %222, i64 %21
+Both operands to a binary operator are not of the same type!
+  %225 = add nuw nsw i64 %22, i32 6
+Both operands to ICmp instruction are not of the same type!
+  %226 = icmp ult i32 %225, i64 511
+Both operands to a binary operator are not of the same type!
+  %227 = add i32 %225, i64 %19
+Both operands to a binary operator are not of the same type!
+  %228 = add i32 %227, i64 %21
+Both operands to a binary operator are not of the same type!
+  %230 = add nuw nsw i64 %22, i32 7
+Both operands to ICmp instruction are not of the same type!
+  %231 = icmp ult i32 %230, i64 511
+Both operands to a binary operator are not of the same type!
+  %232 = add i32 %230, i64 %19
+Both operands to a binary operator are not of the same type!
+  %233 = add i32 %232, i64 %21
+Both operands to a binary operator are not of the same type!
+  %235 = add nuw nsw i64 %22, i32 8
+Both operands to ICmp instruction are not of the same type!
+  %236 = icmp ult i32 %235, i64 511
+Both operands to a binary operator are not of the same type!
+  %237 = add i32 %235, i64 %19
+Both operands to a binary operator are not of the same type!
+  %238 = add i32 %237, i64 %21
+Both operands to a binary operator are not of the same type!
+  %240 = add nuw nsw i64 %22, i32 9
+Both operands to ICmp instruction are not of the same type!
+  %241 = icmp ult i32 %240, i64 511
+Both operands to a binary operator are not of the same type!
+  %242 = add i32 %240, i64 %19
+Both operands to a binary operator are not of the same type!
+  %243 = add i32 %242, i64 %21
+Both operands to a binary operator are not of the same type!
+  %245 = add nuw nsw i64 %22, i32 10
+Both operands to ICmp instruction are not of the same type!
+  %246 = icmp ult i32 %245, i64 511
+Both operands to a binary operator are not of the same type!
+  %247 = add i32 %245, i64 %19
+Both operands to a binary operator are not of the same type!
+  %248 = add i32 %247, i64 %21
+Both operands to a binary operator are not of the same type!
+  %250 = add nuw nsw i64 %22, i32 11
+Both operands to ICmp instruction are not of the same type!
+  %251 = icmp ult i32 %250, i64 511
+Both operands to a binary operator are not of the same type!
+  %252 = add i32 %250, i64 %19
+Both operands to a binary operator are not of the same type!
+  %253 = add i32 %252, i64 %21
+Both operands to a binary operator are not of the same type!
+  %255 = add nuw nsw i64 %22, i32 12
+Both operands to ICmp instruction are not of the same type!
+  %256 = icmp ult i32 %255, i64 511
+Both operands to a binary operator are not of the same type!
+  %257 = add i32 %255, i64 %19
+Both operands to a binary operator are not of the same type!
+  %258 = add i32 %257, i64 %21
+Both operands to a binary operator are not of the same type!
+  %260 = add nuw nsw i64 %22, i32 13
+Both operands to ICmp instruction are not of the same type!
+  %261 = icmp ult i32 %260, i64 511
+Both operands to a binary operator are not of the same type!
+  %262 = add i32 %260, i64 %19
+Both operands to a binary operator are not of the same type!
+  %263 = add i32 %262, i64 %21
+Both operands to a binary operator are not of the same type!
+  %265 = add nuw nsw i64 %22, i32 14
+Both operands to ICmp instruction are not of the same type!
+  %266 = icmp ult i32 %265, i64 511
+Both operands to a binary operator are not of the same type!
+  %267 = add i32 %265, i64 %19
+Both operands to a binary operator are not of the same type!
+  %268 = add i32 %267, i64 %21
+Both operands to a binary operator are not of the same type!
+  %270 = add nuw nsw i64 %22, i32 15
+Both operands to ICmp instruction are not of the same type!
+  %271 = icmp ult i32 %270, i64 511
+Both operands to a binary operator are not of the same type!
+  %272 = add i32 %270, i64 %19
+Both operands to a binary operator are not of the same type!
+  %273 = add i32 %272, i64 %21
+Both operands to a binary operator are not of the same type!
+  %278 = add i32 %277, i64 %18
+Both operands to a binary operator are not of the same type!
+  %279 = add nsw i32 %278, i64 255
+Both operands to a binary operator are not of the same type!
+  %285 = add i64 %19, i32 %284
+Integer arithmetic operators must have same type for operands and result!
+  %286 = add i64 %285, %21
+Both operands to a binary operator are not of the same type!
+  %294 = add i32 %293, i64 %18
+Both operands to a binary operator are not of the same type!
+  %295 = add nsw i32 %294, i64 255
+Both operands to a binary operator are not of the same type!
+  %301 = add i64 %19, i32 %300
+Integer arithmetic operators must have same type for operands and result!
+  %302 = add i64 %301, %21
+Both operands to a binary operator are not of the same type!
+  %310 = add i32 %309, i64 %18
+Both operands to a binary operator are not of the same type!
+  %311 = add nsw i32 %310, i64 255
+Both operands to a binary operator are not of the same type!
+  %317 = add i64 %19, i32 %316
+Integer arithmetic operators must have same type for operands and result!
+  %318 = add i64 %317, %21
+Both operands to a binary operator are not of the same type!
+  %326 = add i32 %325, i64 %18
+Both operands to a binary operator are not of the same type!
+  %327 = add nsw i32 %326, i64 255
+Both operands to a binary operator are not of the same type!
+  %333 = add i64 %19, i32 %332
+Integer arithmetic operators must have same type for operands and result!
+  %334 = add i64 %333, %21
+Both operands to a binary operator are not of the same type!
+  %342 = add i32 %341, i64 %18
+Both operands to a binary operator are not of the same type!
+  %343 = add nsw i32 %342, i64 255
+Both operands to a binary operator are not of the same type!
+  %349 = add i64 %19, i32 %348
+Integer arithmetic operators must have same type for operands and result!
+  %350 = add i64 %349, %21
+Both operands to a binary operator are not of the same type!
+  %358 = add i32 %357, i64 %18
+Both operands to a binary operator are not of the same type!
+  %359 = add nsw i32 %358, i64 255
+Both operands to a binary operator are not of the same type!
+  %365 = add i64 %19, i32 %364
+Integer arithmetic operators must have same type for operands and result!
+  %366 = add i64 %365, %21
+Both operands to a binary operator are not of the same type!
+  %374 = add i32 %373, i64 %18
+Both operands to a binary operator are not of the same type!
+  %375 = add nsw i32 %374, i64 255
+Both operands to a binary operator are not of the same type!
+  %381 = add i64 %19, i32 %380
+Integer arithmetic operators must have same type for operands and result!
+  %382 = add i64 %381, %21
+Both operands to a binary operator are not of the same type!
+  %390 = add i32 %389, i64 %18
+Both operands to a binary operator are not of the same type!
+  %391 = add nsw i32 %390, i64 255
+Both operands to a binary operator are not of the same type!
+  %397 = add i64 %19, i32 %396
+Integer arithmetic operators must have same type for operands and result!
+  %398 = add i64 %397, %21
+Both operands to a binary operator are not of the same type!
+  %406 = add i32 %405, i64 %18
+Both operands to a binary operator are not of the same type!
+  %407 = add nsw i32 %406, i64 255
+Both operands to a binary operator are not of the same type!
+  %413 = add i64 %19, i32 %412
+Integer arithmetic operators must have same type for operands and result!
+  %414 = add i64 %413, %21
+Both operands to a binary operator are not of the same type!
+  %422 = add i32 %421, i64 %18
+Both operands to a binary operator are not of the same type!
+  %423 = add nsw i32 %422, i64 255
+Both operands to a binary operator are not of the same type!
+  %429 = add i64 %19, i32 %428
+Integer arithmetic operators must have same type for operands and result!
+  %430 = add i64 %429, %21
+Both operands to a binary operator are not of the same type!
+  %438 = add i32 %437, i64 %18
+Both operands to a binary operator are not of the same type!
+  %439 = add nsw i32 %438, i64 255
+Both operands to a binary operator are not of the same type!
+  %445 = add i64 %19, i32 %444
+Integer arithmetic operators must have same type for operands and result!
+  %446 = add i64 %445, %21
+Both operands to a binary operator are not of the same type!
+  %454 = add i32 %453, i64 %18
+Both operands to a binary operator are not of the same type!
+  %455 = add nsw i32 %454, i64 255
+Both operands to a binary operator are not of the same type!
+  %461 = add i64 %19, i32 %460
+Integer arithmetic operators must have same type for operands and result!
+  %462 = add i64 %461, %21
+Both operands to a binary operator are not of the same type!
+  %470 = add i32 %469, i64 %18
+Both operands to a binary operator are not of the same type!
+  %471 = add nsw i32 %470, i64 255
+Both operands to a binary operator are not of the same type!
+  %477 = add i64 %19, i32 %476
+Integer arithmetic operators must have same type for operands and result!
+  %478 = add i64 %477, %21
+Both operands to a binary operator are not of the same type!
+  %486 = add i32 %485, i64 %18
+Both operands to a binary operator are not of the same type!
+  %487 = add nsw i32 %486, i64 255
+Both operands to a binary operator are not of the same type!
+  %493 = add i64 %19, i32 %492
+Integer arithmetic operators must have same type for operands and result!
+  %494 = add i64 %493, %21
+Both operands to a binary operator are not of the same type!
+  %502 = add i32 %501, i64 %18
+Both operands to a binary operator are not of the same type!
+  %503 = add nsw i32 %502, i64 255
+Both operands to a binary operator are not of the same type!
+  %509 = add i64 %19, i32 %508
+Integer arithmetic operators must have same type for operands and result!
+  %510 = add i64 %509, %21
+

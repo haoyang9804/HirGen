@@ -1,0 +1,127 @@
+1: 
+  1: data layout
+  2: runtime
+  3: data layout
+  4: data layout
+  5: low-level
+  6: low-level
+  7: low-level
+
+  190 inconsistencies
+
+2:
+  1: data layout
+  2: data layout
+  3: runtime
+  4: low-level
+  5: data layout
+  6: data layout 
+  7: data layout
+  8: data layout
+  9: shape
+  10: low-level
+  11: low-level
+
+  196 inconsistencies
+
+3:
+  1: data layout
+  2: high-level optimization
+  3: data layout
+  4: data layout
+  5: runtime
+  6: low-level
+  7: data layout
+  8: low-level
+  9: data layout
+  10: shape
+  11: low-level
+
+  663 inconsistencies
+
+4:
+  1: low-level
+  2: low-level
+  3: data layout
+  4: low-level
+  5: data layout
+  6: runtime
+  7: data layout
+  8: low-level
+
+  283 inconsistencies
+
+5:
+  1: shape
+  2: data layout
+  3: high-level optimization
+  4: low-level (type)
+  5: data layout
+  6: high-level optimization (shape)
+  7: data layout
+  8: data layout
+  9: low-level (type)
+  10: low-level (type)
+  11: high-level optimization (shape)
+  12: high-level optimization (shape)
+  13: data layout
+
+  362 inconsistencies
+
+6:
+  1: low-level
+  2: low-level
+  3: high-level (type)
+  4: high-level (type)
+  5: low-level
+  6: low-level
+  7: low-level
+  8: runtime
+
+  512 inconsistencies
+
+7:
+  1: high-level
+  2: high-level
+  3: runtime
+  4: low-level
+  5: low-level
+  6: low-level
+  7: runtime
+
+  413 inconsistencies
+
+8:
+  1: low-level
+  2: low-level
+  3: low-level
+  4: high-level
+  5: high-level
+  6: runtime
+  7: low-level
+  8: low-level
+  9: runtime
+
+  399 inconsistencies
+
+9:
+  1: high-level
+  2: low-level
+  3: low-level
+  4: low-level
+  5: high-level
+  6: low-level
+  7: low-level
+  8: runtime
+
+  212 inconsistencies
+
+10:
+  1: low-level
+  2: low-level
+  3: high-level
+  4: low-level
+  5: high-level
+  6: low-level
+  7: low-level
+  8: runtime

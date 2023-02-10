@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 92, in checked_exec
+    return executable(input)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 81, in closure
+    output = executor(**inputs)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 644, in _graph_wrapper
+    gmodule.run()
+  File "/softwares/tvm/python/tvm/contrib/graph_executor.py", line 208, in run
+    self._run()
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  4: TVMFuncCall
+  3: _ZN3tvm7runtime13PackedFuncObj9Ext
+  2: tvm::runtime::GraphExecutor::Run()
+  1: std::_Function_handler<void (), tvm::runtime::GraphExecutor::CreateTVMOp(tvm::runtime::TVMOpParam const&, std::vector<DLTensor, std::allocator<DLTensor> > const&)::{lambda()#3}>::_M_invoke(std::_Any_data const&)
+  0: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::WrapPackedFunc(int (*)(TVMValue*, int*, int, TVMValue*, int*, void*), tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  File "/softwares/tvm/src/runtime/library_module.cc", line 80
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+
+  Check failed: ret == 0 (-1 vs. 0) : Assert fail: (((tir.tvm_struct_get(arg.T_negative_red, 0, 5) == (uint8)0) && (tir.tvm_struct_get(arg.T_negative_red, 0, 6) == (uint8)64)) && (tir.tvm_struct_get(arg.T_negative_red, 0, 7) == (uint16)1)), arg.T_negative_red.dtype is expected to be int64

@@ -1,0 +1,106 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 70, in make_backend
+    mod, params = relay.frontend.from_onnx(
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 5225, in from_onnx
+    mod, params = g.from_onnx(graph, opset)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 4895, in from_onnx
+    self._construct_nodes(graph)
+  File "/softwares/tvm/python/tvm/relay/frontend/onnx.py", line 5014, in _construct_nodes
+    op = fold_constant(op)
+  File "/softwares/tvm/python/tvm/relay/frontend/common.py", line 511, in fold_constant
+    return _transform.FoldConstantExpr(node, mod)
+  File "/softwares/tvm/python/tvm/relay/transform/transform.py", line 278, in FoldConstantExpr
+    return _ffi_api.FoldConstantExpr(expr, mod)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  76: TVMFuncCall
+  75: _ZN3tvm7runtime13PackedFuncObj9ExtractorIN
+  74: tvm::runtime::TypedPackedFunc<tvm::RelayExpr (tvm::RelayExpr const&, tvm::IRModule const&)>::AssignTypedLambda<tvm::RelayExpr (*)(tvm::RelayExpr const&, tvm::IRModule const&)>(tvm::RelayExpr (*)(tvm::RelayExpr const&, tvm::IRModule const&), std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  73: tvm::relay::transform::FoldConstantExpr(tvm::RelayExpr const&, tvm::IRModule const&)
+  72: tvm::relay::MixedModeMutator::VisitExpr(tvm::RelayExpr const&)
+  71: tvm::relay::MixedModeMutator::VisitLeaf(tvm::RelayExpr const&)
+  70: tvm::relay::MixedModeMutator::DispatchVisitExpr(tvm::RelayExpr const&)
+  69: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  68: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  67: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  66: tvm::relay::MixedModeMutator::VisitExpr_(tvm::relay::CallNode const*)
+  65: tvm::relay::transform::(anonymous namespace)::ConstantFolder::Rewrite_(tvm::relay::CallNode const*, tvm::RelayExpr const&)
+  64: tvm::relay::transform::(anonymous namespace)::ConstantFolder::ConstEvaluate(tvm::RelayExpr const&)
+  63: tvm::relay::Eval(tvm::RelayExpr, tvm::runtime::Map<tvm::GlobalTypeVar, tvm::TypeData, void, void>, std::unordered_set<tvm::runtime::String, std::hash<tvm::runtime::String>, std::equal_to<tvm::runtime::String>, std::allocator<tvm::runtime::String> >, DLDevice, tvm::Target, tvm::runtime::Map<tvm::runtime::String, tvm::runtime::ObjectRef, void, void>)
+  62: tvm::relay::Prepare(tvm::IRModule, tvm::CompilationConfig)
+  61: tvm::transform::Pass::operator()(tvm::IRModule) const
+  60: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  59: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  58: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  57: tvm::transform::SequentialNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  56: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  55: tvm::transform::ModulePassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  54: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::IRModule (tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::tec::LowerTEPass(tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::tec::LowerTEPass(tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  53: tvm::relay::tec::LowerTE(tvm::IRModule const&, tvm::runtime::String const&, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)
+  52: tvm::transform::Pass::operator()(tvm::IRModule) const
+  51: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  50: tvm::relay::transform::FunctionPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  49: _ZN3tvm7runtime13PackedFuncObj9ExtractorIN
+  48: tvm::runtime::TypedPackedFunc<tvm::relay::Function (tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::relay::tec::LowerTensorExpr(tvm::runtime::String const&, tvm::relay::tec::TECompiler, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::relay::tec::LowerTensorExpr(tvm::runtime::String const&, tvm::relay::tec::TECompiler, std::function<void (tvm::BaseFunc)>, tvm::VirtualDevice)::{lambda(tvm::relay::Function, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}::operator()(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*) const
+  47: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  46: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  45: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  44: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  43: tvm::relay::tec::LowerTensorExprMutator::DeviceAwareVisitExpr_(tvm::relay::FunctionNode const*)
+  42: _ZN3tvm5relay9transform22DeviceAwareExprMutator21DeviceAwareVisitExpr_EPKNS
+  41: tvm::relay::ExprMutator::VisitExpr_(tvm::relay::FunctionNode const*)
+  40: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  39: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  38: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  37: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::LetNode const*)
+  36: tvm::relay::tec::LowerTensorExprMutator::PreVisitLetBinding_(tvm::relay::Var const&, tvm::RelayExpr const&)
+  35: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  34: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  33: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  32: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::CallNode const*)
+  31: tvm::relay::ExprMutator::VisitExpr(tvm::RelayExpr const&)
+  30: tvm::relay::ExprFunctor<tvm::RelayExpr (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+  29: _ZZN3tvm5relay11ExprFunctorIFNS_9RelayExprERKS2_EE10InitVTableEvENUlRKNS_7runtime9Obj
+  28: tvm::relay::transform::DeviceAwareExprMutator::VisitExpr_(tvm::relay::CallNode const*)
+  27: tvm::relay::tec::LowerTensorExprMutator::DeviceAwareVisitExpr_(tvm::relay::CallNode const*)
+  26: tvm::relay::tec::LowerTensorExprMutator::MakeLoweredCall(tvm::relay::Function, tvm::runtime::Array<tvm::RelayExpr, void>, tvm::Span, tvm::Target)
+  25: tvm::relay::tec::TECompilerImpl::Lower(tvm::relay::tec::CCacheKey const&, tvm::runtime::String)
+  24: tvm::relay::tec::TECompilerImpl::LowerInternal(tvm::relay::tec::CCacheKey const&, std::function<tvm::runtime::String (tvm::runtime::String)>)
+  23: tvm::transform::Pass::operator()(tvm::IRModule) const
+  22: tvm::transform::Pass::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  21: tvm::tir::transform::PrimFuncPassNode::operator()(tvm::IRModule, tvm::transform::PassContext const&) const
+  20: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::tir::PrimFunc (tvm::tir::PrimFunc, tvm::IRModule, tvm::transform::PassContext)>::AssignTypedLambda<tvm::tir::transform::BindParams(tvm::runtime::Array<tvm::runtime::NDArray, void> const&)::{lambda(tvm::tir::PrimFunc, tvm::IRModule, tvm::transform::PassContext)#1}>(tvm::tir::transform::BindParams(tvm::runtime::Array<tvm::runtime::NDArray, void> const&)::{lambda(tvm::tir::PrimFunc, tvm::IRModule, tvm::transform::PassContext)#1})::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  19: tvm::tir::transform::BindParams(tvm::runtime::Array<tvm::runtime::NDArray, void> const&)::{lambda(tvm::tir::PrimFunc, tvm::IRModule, tvm::transform::PassContext)#1}::operator()(tvm::tir::PrimFunc, tvm::IRModule, tvm::transform::PassContext) const [clone .isra.200]
+  18: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  17: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  16: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::ForNode const*)
+  15: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  14: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  13: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::ForNode const*)
+  12: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  11: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  10: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::ForNode const*)
+  9: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  8: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  7: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::ForNode const*)
+  6: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  5: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  4: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::IfThenElseNode const*)
+  3: tvm::tir::StmtFunctor<void (tvm::tir::Stmt const&)>::VisitStmt(tvm::tir::Stmt const&)
+  2: _ZZN3tvm3tir11StmtFunctorIFvRKNS0_4StmtE
+  1: tvm::tir::StmtVisitor::VisitStmt_(tvm::tir::LetStmtNode const*)
+  0: tvm::tir::StmtExprVisitor::VisitExpr(tvm::PrimExpr const&)
+  File "/softwares/tvm/include/tvm/node/functor.h", line 95
+TVMError: 
+---------------------------------------------------------------
+An error occurred during the execution of TVM.
+For more information, please see: https://tvm.apache.org/docs/errors.html
+---------------------------------------------------------------
+  Check failed: (can_dispatch(n)) is false: NodeFunctor calls un-registered function on type tir.IfThenElse

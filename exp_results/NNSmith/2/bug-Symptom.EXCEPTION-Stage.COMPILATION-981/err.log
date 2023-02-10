@@ -1,0 +1,92 @@
+Traceback (most recent call last):
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 69, in checked_compile
+    return self.checked_make_backend(testcase.model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/factory.py", line 65, in checked_make_backend
+    return self.make_backend(model)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/multipledispatch/dispatcher.py", line 435, in __call__
+    return func(self.obj, *args, **kwargs)
+  File "/softwares/miniconda3/lib/python3.9/site-packages/nnsmith/backends/tvm.py", line 76, in make_backend
+    executor = relay.build_module.create_executor(
+  File "/softwares/tvm/python/tvm/relay/backend/interpreter.py", line 171, in evaluate
+    return self._make_executor()
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 624, in _make_executor
+    mod = build(self.mod, target=self.target)
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 478, in build
+    graph_json, runtime_mod, params = bld_mod.build(
+  File "/softwares/tvm/python/tvm/relay/build_module.py", line 202, in build
+    self._build(mod, target, target_host, executor, runtime, workspace_memory_pools, mod_name)
+  File "/softwares/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+tvm._ffi.base.TVMError: Traceback (most recent call last):
+  8: TVMFuncCall
+  7: _ZN3tvm7runtime13PackedFuncObj9ExtractorINS0_1
+  6: tvm::relay::backend::RelayBuildModule::GetFunction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, tvm::runtime::ObjectPtr<tvm::runtime::Object> const&)::{lambda(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)#3}::operator()(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+  5: tvm::relay::backend::RelayBuildModule::Build(tvm::IRModule, tvm::runtime::Map<tvm::Integer, tvm::Target, void, void> const&, tvm::Target const&, tvm::relay::Executor const&, tvm::relay::Runtime const&, tvm::WorkspaceMemoryPools const&, tvm::runtime::String)
+  4: tvm::relay::backend::RelayBuildModule::BuildRelay(tvm::IRModule, tvm::runtime::String const&)
+  3: tvm::build(tvm::runtime::Map<tvm::Target, tvm::IRModule, void, void> const&, tvm::Target const&)
+  2: tvm::codegen::Build(tvm::IRModule, tvm::Target)
+  1: tvm::runtime::PackedFuncObj::Extractor<tvm::runtime::PackedFuncSubObj<tvm::runtime::TypedPackedFunc<tvm::runtime::Module (tvm::IRModule, tvm::Target)>::AssignTypedLambda<tvm::codegen::{lambda(tvm::IRModule, tvm::Target)#1}>(tvm::codegen::{lambda(tvm::IRModule, tvm::Target)#1}, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)::{lambda(tvm::runtime::TVMArgs const&, tvm::runtime::TVMRetValue*)#1}> >::Call(tvm::runtime::PackedFuncObj const*, tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*)
+  0: tvm::codegen::LLVMModuleNode::Init(tvm::IRModule const&, tvm::Target const&)
+  File "/softwares/tvm/src/target/llvm/llvm_module.cc", line 331
+TVMError: LLVM module verification failed with the following errors: 
+Both operands to a binary operator are not of the same type!
+  %20 = add nuw nsw i64 %5, i32 1
+Both operands to ICmp instruction are not of the same type!
+  %21 = icmp ult i32 %20, i64 75
+Both operands to a binary operator are not of the same type!
+  %39 = add nuw nsw i64 %5, i32 2
+Both operands to ICmp instruction are not of the same type!
+  %40 = icmp ult i32 %39, i64 75
+Both operands to a binary operator are not of the same type!
+  %58 = add nuw nsw i64 %5, i32 3
+Both operands to ICmp instruction are not of the same type!
+  %59 = icmp ult i32 %58, i64 75
+Both operands to a binary operator are not of the same type!
+  %77 = add nuw nsw i64 %5, i32 4
+Both operands to ICmp instruction are not of the same type!
+  %78 = icmp ult i32 %77, i64 75
+Both operands to a binary operator are not of the same type!
+  %96 = add nuw nsw i64 %5, i32 5
+Both operands to ICmp instruction are not of the same type!
+  %97 = icmp ult i32 %96, i64 75
+Both operands to a binary operator are not of the same type!
+  %115 = add nuw nsw i64 %5, i32 6
+Both operands to ICmp instruction are not of the same type!
+  %116 = icmp ult i32 %115, i64 75
+Both operands to a binary operator are not of the same type!
+  %134 = add nuw nsw i64 %5, i32 7
+Both operands to ICmp instruction are not of the same type!
+  %135 = icmp ult i32 %134, i64 75
+Both operands to a binary operator are not of the same type!
+  %153 = add nuw nsw i64 %5, i32 8
+Both operands to ICmp instruction are not of the same type!
+  %154 = icmp ult i32 %153, i64 75
+Both operands to a binary operator are not of the same type!
+  %172 = add nuw nsw i64 %5, i32 9
+Both operands to ICmp instruction are not of the same type!
+  %173 = icmp ult i32 %172, i64 75
+Both operands to a binary operator are not of the same type!
+  %191 = add nuw nsw i64 %5, i32 10
+Both operands to ICmp instruction are not of the same type!
+  %192 = icmp ult i32 %191, i64 75
+Both operands to a binary operator are not of the same type!
+  %210 = add nuw nsw i64 %5, i32 11
+Both operands to ICmp instruction are not of the same type!
+  %211 = icmp ult i32 %210, i64 75
+Both operands to a binary operator are not of the same type!
+  %229 = add nuw nsw i64 %5, i32 12
+Both operands to ICmp instruction are not of the same type!
+  %230 = icmp ult i32 %229, i64 75
+Both operands to a binary operator are not of the same type!
+  %248 = add nuw nsw i64 %5, i32 13
+Both operands to ICmp instruction are not of the same type!
+  %249 = icmp ult i32 %248, i64 75
+Both operands to a binary operator are not of the same type!
+  %267 = add nuw nsw i64 %5, i32 14
+Both operands to ICmp instruction are not of the same type!
+  %268 = icmp ult i32 %267, i64 75
+Both operands to a binary operator are not of the same type!
+  %286 = add nuw nsw i64 %5, i32 15
+Both operands to ICmp instruction are not of the same type!
+  %287 = icmp ult i32 %286, i64 75
+
