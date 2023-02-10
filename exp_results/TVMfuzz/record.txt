@@ -1,0 +1,57 @@
+1:
+  1: runtime
+  3-0: runtime
+  3-1: high-level
+
+2:
+  3: runtime
+  4: high-level
+  3-0: runtime
+  3-1: high-level
+
+3:
+  2: runtime
+  3-0: high-level
+
+4:
+  3: runtime
+  3-0: low-level
+  3-1: high-level
+
+5:
+  2: runtime
+  3-0: high-level
+  3-1: high-level
+  3-4: low-level
+
+6:
+  2: runtime
+  3-0: low-level
+  3-1: high-level
+  3-5: runtime
+
+7:
+  1: runtime
+  4: high-level
+  3-0: high-level
+  3-3: high-level
+  3-7: inconsistency
+
+8:
+  3: runtime
+  4: low-level
+  3-0: runtime
+  3-1: high-level
+  3-5: low-level
+
+9:
+  1: runtime
+  4: runtime
+  3-1: high-level
+  3-3: low-level
+
+10:
+  2: runtime
+  3-0: low-level
+  3-1: high-level
+  
