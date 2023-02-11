@@ -13,7 +13,8 @@
   12: inconsistency
   13: high-level
 
-  11 high-level 
+  11 high-level
+  12
   11 / 13 = 84.6%  
 
 2: 
@@ -32,6 +33,7 @@
   13: inconsistency
 
   10 high-level
+  12
   10 / 13 = 76.9%
 
 3: 
@@ -49,6 +51,7 @@
   12: inconsistency
   13: low-level
 
+  11
   9 / 13 == 69.2 %
 
 4:
@@ -66,6 +69,7 @@
   12: high-level
   13: inconsistency
 
+  11
   9 / 13 = 69.2%
 
 5: 
@@ -83,6 +87,7 @@
   12: inconsistency
   13: low-level
 
+  11
   9 high-level
   9 / 13 = 69.2%
 
@@ -101,6 +106,7 @@
   12: low-level
   13: high-level
 
+  12
   10 high-level
   10 / 13 = 76.9%
 
@@ -118,6 +124,7 @@
   11: low-level
   12: high-level
   
+  12
   10 high-level
   10 / 12 = 83.3%
 
@@ -137,6 +144,7 @@
   13: low-level
   14: low-level
 
+  13
   8 high-level
   10 / 14 = 71.4%
 
@@ -154,6 +162,7 @@
   11: low-level
   12: high-level
 
+  12
   10 high-level
   10 / 12 = 83.3%
 
@@ -171,5 +180,6 @@
   11: high-level
   12: low-level
 
+  12
   10 high-level
   10 / 12 = 83.3%

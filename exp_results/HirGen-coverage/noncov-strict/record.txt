@@ -1,0 +1,140 @@
+1:
+  1: highlevel
+  2: highlevel
+  3: runtime
+  4: highlevel
+  5: highlevel
+  6: highlevel
+  7: highlevel
+  8: inconsistency
+  9: lowlevel
+  10: lowlevel
+
+  6 / 10 9
+
+2:
+  1: highlevel
+  2: highlevel
+  3: runtime
+  4: highlevel
+  5: highlevel
+  6: highlevel
+  7: highlevel
+  8: inconsistency
+  9: highlevel
+  10:lowlevel
+
+  7 / 10 9
+
+3: 
+  1: highlevel
+  2: highlevel
+  3: runtime
+  4: highlevel
+  5: highlevel
+  6: highlevel
+  7: highlevel
+  8: runtime
+  9: highlevel
+  10: inconsistency
+  11: inconsistency
+  12: lowlevel
+  13: inconsistency
+  14: highlevel
+
+  8 / 14 11
+
+4:
+  1: highlevel
+  2: highlevel
+  3: highlevel
+  4: highlevel
+  5: highlevel
+  6: runtime
+  7: highlevel
+  8: highlevel
+
+  7 / 8 8
+
+5: 
+  1: highlevel
+  2: highlevel
+  3: runtime
+  4: highlevel
+  5: lowlevel
+  6: highlevel
+  7: lowlevel
+  8: highlevel
+  9: highlevel
+  10: highlevel
+  11: highlevel
+  12: inconsistency
+  13: highlevel
+  14: lowlevel
+
+  9 / 14 13
+
+6:
+  1: highlevel
+  2: highlevel
+  3: highlevel
+  4: runtime
+  5: highlevel
+  6: highlevel
+  7: highlevel
+  8: inconsistency
+  9: inconsistency
+  10: lowlevel
+
+  6 / 10 8
+
+7:
+  1: highlevel
+  2: highlevel
+  3: highlevel
+  4: highlevel
+  5: runtime
+  6: highlevel
+  7: highlevel
+  8: lowlevel
+  9: inconsistency
+  10: lowlevel
+  11: inconsistency
+
+  6 / 11 9
+
+8:
+  1: highlevel
+  2: highlevel
+  3: highlevel
+  4: highlevel
+  5: runtime
+  6: highlevel
+  7: highlevel
+
+  6 / 11 11
+
+9:
+  1: highlevel
+  2: highlevel
+  3: highlevel
+  4: highlevel
+  5: highlevel
+  6: runtime
+  7: highlevel
+  8: inconsistency
+
+  6 / 8 7
+
+10:
+  1: highlevel
+  2: runtime
+  3: highlevel
+  4: highlevel
+  5: highlevel
+  6: highlevel
+  7: lowlevel
+  8: lowlevel
+  9: highlevel
+
+  6 / 9 9
